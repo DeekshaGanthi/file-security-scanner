@@ -1,0 +1,39 @@
+# Secrets
+.env
+.env.*
+
+# Python virtual environments
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local database and runtime uploads
+scanner.db
+*.db
+uploads/
+
+# Test/sample files
+test.py
+test_*.pdf
+test_*.png
+
+# Git files
+.git/
+.gitignore
+
+# IDE / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Archives and temporary files
+*.zip
+*.log
+.pytest_cache/

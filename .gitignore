@@ -1,0 +1,4 @@
+.env
+scanner.db
+__pycache__/
+*.pyc

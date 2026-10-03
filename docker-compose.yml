@@ -1,0 +1,42 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: file-security-scanner:v1
+    command:
+      - uvicorn
+      - backend.main:app
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+    environment:
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      DATABASE_PATH: /app/data/scanner.db
+    volumes:
+      - scanner-data:/app/data
+      - uploads-data:/app/uploads
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  frontend:
+    image: file-security-scanner:v1
+    command:
+      - streamlit
+      - run
+      - frontend/app.py
+      - --server.address=0.0.0.0
+      - --server.port=8501
+    environment:
+      API_URL: http://api:8000
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  scanner-data:
+  uploads-data:
