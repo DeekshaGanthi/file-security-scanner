@@ -1,76 +1,133 @@
+"""
+PostgreSQL Database Module
+File Security Scanner - Milestone 4
+
+Purpose:
+    Manage PostgreSQL database connections and operations
+    for the File Security Scanner application.
+
+Database:
+    Google Cloud SQL - PostgreSQL
+
+Required environment variables:
+    DB_HOST
+    DB_NAME
+    DB_USER
+    DB_PASSWORD
+
+Optional environment variables:
+    DB_PORT (default: 5432)
+    DB_SSLMODE (default: require)
+
+Security:
+    Database credentials are provided through environment variables.
+    The database password is retrieved from Google Secret Manager
+    by the VM startup script.
+
+Note:
+    Database tables have already been created and populated.
+    The application user does not need CREATE TABLE permissions.
+"""
+
 import os
-import sqlite3
+
+import psycopg
+from psycopg.rows import dict_row
 
 
-DATABASE = os.getenv("DATABASE_PATH", "scanner.db")
-
+# ============================================================
+# 1. PostgreSQL Database Connection
+# ============================================================
 
 def get_connection():
-    connection = sqlite3.connect(DATABASE)
-    connection.row_factory = sqlite3.Row
+    """
+    Establish a secure connection to Cloud SQL PostgreSQL.
+
+    Returns:
+        psycopg.Connection: Active PostgreSQL connection.
+    """
+
+    # Check that all required environment variables exist.
+    required_variables = (
+        "DB_HOST",
+        "DB_NAME",
+        "DB_USER",
+        "DB_PASSWORD",
+    )
+
+    missing_variables = [
+        variable
+        for variable in required_variables
+        if not os.getenv(variable)
+    ]
+
+    if missing_variables:
+        raise RuntimeError(
+            "Missing database environment variables: "
+            + ", ".join(missing_variables)
+        )
+
+    # Connect to PostgreSQL using the configured settings.
+    connection = psycopg.connect(
+        host=os.environ["DB_HOST"],
+        port=int(os.getenv("DB_PORT", "5432")),
+        dbname=os.environ["DB_NAME"],
+        user=os.environ["DB_USER"],
+        password=os.environ["DB_PASSWORD"],
+        sslmode=os.getenv("DB_SSLMODE", "require"),
+        row_factory=dict_row,
+        connect_timeout=10,
+    )
+
     return connection
 
 
+# ============================================================
+# 2. Verify Database Tables
+# ============================================================
+
 def create_tables():
+    """
+    Verify that the required PostgreSQL tables exist.
 
-    connection = get_connection()
-    cursor = connection.cursor()
+    IMPORTANT:
+        Tables were already created during the SQLite-to-
+        PostgreSQL migration.
 
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS scans (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        The scanner_app database user has SELECT, INSERT,
+        UPDATE, and DELETE permissions, but does not have
+        CREATE TABLE permissions.
 
-        filename TEXT NOT NULL,
+        Therefore, this function only verifies that the
+        required tables are accessible.
 
-        sha256 TEXT NOT NULL,
+    Raises:
+        psycopg.Error:
+            If a required table is missing or inaccessible.
+    """
 
-        file_type TEXT,
+    with get_connection() as connection:
+        with connection.cursor() as cursor:
 
-        file_size INTEGER,
+            # Verify scans table.
+            cursor.execute(
+                "SELECT 1 FROM scans LIMIT 1"
+            )
 
-        risk_score INTEGER,
+            # Verify indicators table.
+            cursor.execute(
+                "SELECT 1 FROM indicators LIMIT 1"
+            )
 
-        risk_level TEXT,
+            # Verify LLM reports table.
+            cursor.execute(
+                "SELECT 1 FROM llm_reports LIMIT 1"
+            )
 
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )
-    """)
 
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS indicators (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-
-        scan_id INTEGER,
-
-        indicator_type TEXT,
-
-        indicator_name TEXT,
-
-        severity TEXT,
-
-        FOREIGN KEY(scan_id) REFERENCES scans(id)
-    )
-    """)
-
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS llm_reports (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-
-        scan_id INTEGER,
-
-        model TEXT,
-
-        report TEXT,
-
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-        FOREIGN KEY(scan_id) REFERENCES scans(id)
-    )
-    """)
-
-    connection.commit()
-    connection.close()
-
+# ============================================================
+# 3. Save File Scan Results
+# ============================================================
 
 def save_scan(
     filename,
@@ -78,112 +135,160 @@ def save_scan(
     file_type,
     file_size,
     risk_score,
-    risk_level
+    risk_level,
 ):
+    """
+    Insert a new file scan record into PostgreSQL.
 
-    connection = get_connection()
-    cursor = connection.cursor()
+    Args:
+        filename: Name of the uploaded file.
+        sha256: SHA-256 hash of the file.
+        file_type: Detected file type.
+        file_size: File size in bytes.
+        risk_score: Calculated security risk score.
+        risk_level: Security risk classification.
 
-    cursor.execute("""
-    INSERT INTO scans
-    (
-        filename,
-        sha256,
-        file_type,
-        file_size,
-        risk_score,
-        risk_level
-    )
-    VALUES (?, ?, ?, ?, ?, ?)
-    """, (
-        filename,
-        sha256,
-        file_type,
-        file_size,
-        risk_score,
-        risk_level
-    ))
+    Returns:
+        int: ID of the newly created scan record.
+    """
 
-    connection.commit()
+    with get_connection() as connection:
+        with connection.cursor() as cursor:
 
-    scan_id = cursor.lastrowid
+            cursor.execute(
+                """
+                INSERT INTO scans (
+                    filename,
+                    sha256,
+                    file_type,
+                    file_size,
+                    risk_score,
+                    risk_level
+                )
+                VALUES (%s, %s, %s, %s, %s, %s)
+                RETURNING id
+                """,
+                (
+                    filename,
+                    sha256,
+                    file_type,
+                    file_size,
+                    risk_score,
+                    risk_level,
+                ),
+            )
 
-    connection.close()
+            # PostgreSQL RETURNING retrieves the generated ID.
+            scan_id = cursor.fetchone()["id"]
 
-    return scan_id
+            return scan_id
 
+
+# ============================================================
+# 4. Save Security Indicators
+# ============================================================
 
 def save_indicator(
     scan_id,
     indicator_type,
     indicator_name,
-    severity
+    severity,
 ):
+    """
+    Save a security indicator associated with a file scan.
 
-    connection = get_connection()
-    cursor = connection.cursor()
+    Args:
+        scan_id: ID of the related scan.
+        indicator_type: Type of detected indicator.
+        indicator_name: Name or description of the indicator.
+        severity: Severity classification.
+    """
 
-    cursor.execute("""
-    INSERT INTO indicators
-    (
-        scan_id,
-        indicator_type,
-        indicator_name,
-        severity
-    )
-    VALUES (?, ?, ?, ?)
-    """, (
-        scan_id,
-        indicator_type,
-        indicator_name,
-        severity
-    ))
+    with get_connection() as connection:
+        with connection.cursor() as cursor:
 
-    connection.commit()
-    connection.close()
+            cursor.execute(
+                """
+                INSERT INTO indicators (
+                    scan_id,
+                    indicator_type,
+                    indicator_name,
+                    severity
+                )
+                VALUES (%s, %s, %s, %s)
+                """,
+                (
+                    scan_id,
+                    indicator_type,
+                    indicator_name,
+                    severity,
+                ),
+            )
 
+
+# ============================================================
+# 5. Save Gemini AI Reports
+# ============================================================
 
 def save_llm_report(
     scan_id,
     model,
-    report
+    report,
 ):
+    """
+    Save an AI-generated security report.
 
-    connection = get_connection()
-    cursor = connection.cursor()
+    Args:
+        scan_id: ID of the related scan.
+        model: Name of the AI model.
+        report: Generated security analysis.
+    """
 
-    cursor.execute("""
-    INSERT INTO llm_reports
-    (
-        scan_id,
-        model,
-        report
-    )
-    VALUES (?, ?, ?)
-    """, (
-        scan_id,
-        model,
-        report
-    ))
+    with get_connection() as connection:
+        with connection.cursor() as cursor:
 
-    connection.commit()
-    connection.close()
+            cursor.execute(
+                """
+                INSERT INTO llm_reports (
+                    scan_id,
+                    model,
+                    report
+                )
+                VALUES (%s, %s, %s)
+                """,
+                (
+                    scan_id,
+                    model,
+                    report,
+                ),
+            )
 
+
+# ============================================================
+# 6. Retrieve Scan History
+# ============================================================
 
 def get_all_scans():
+    """
+    Retrieve all file scan records.
 
-    connection = get_connection()
+    Results are ordered from newest to oldest.
 
-    cursor = connection.cursor()
+    Returns:
+        list[dict]: File scan records.
+    """
 
-    cursor.execute("""
-    SELECT *
-    FROM scans
-    ORDER BY created_at DESC
-    """)
+    with get_connection() as connection:
+        with connection.cursor() as cursor:
 
-    rows = cursor.fetchall()
+            cursor.execute(
+                """
+                SELECT *
+                FROM scans
+                ORDER BY created_at DESC
+                """
+            )
 
-    connection.close()
+            scans = cursor.fetchall()
 
-    return [dict(row) for row in rows]
+            return scans

@@ -8,3 +8,5 @@ google-genai
 pymupdf
 pillow
 yara-python
+psycopg[binary]
+google-cloud-storage
