@@ -1,26 +1,49 @@
-curl.exe :   % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
-At line:2 char:1
-+ curl.exe --fail --max-time 30 -I https://scanner.136-69-114-222.sslip ...
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (  % Total    % ... Time   Current:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- 
-                                 Dload  Upload  Total   Spent   Left   Speed
-
-  0      0   0      0   0      0      0      0                              0
-  0   6467   0      0   0      0      0      0                              0
-  0   6467   0      0   0      0      0      0                              0
-  0   6467   0      0   0      0      0      0                              0
-HTTP/1.1 200 OK
-date: Mon, 26 Oct 2026 01:46:20 GMT
-server: uvicorn
-content-type: text/html; charset=utf-8
-accept-ranges: bytes
-Content-Length: 6467
-last-modified: Mon, 26 Oct 2026 01:35:04 GMT
-etag: "768d326e7bc0358a271393dc7fff8618"
-cache-control: no-cache
-Via: 1.1 google
-Set-Cookie: GCLB=CNiAiemUpN2FCRAD; path=/; HttpOnly; expires=Mon, 26-Oct-2026 02:46:20 GMT
-Alt-Svc: h3=":443"; ma=2592000
-
+curl.exe :   % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+
+At line:2 char:1
+
++ curl.exe --fail --max-time 30 -I https://scanner.136-69-114-222.sslip ...
+
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    + CategoryInfo          : NotSpecified: (  % Total    % ... Time   Current:String) [], RemoteException
+
+    + FullyQualifiedErrorId : NativeCommandError
+
+
+
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+
+
+  0      0   0      0   0      0      0      0                              0
+
+  0   6467   0      0   0      0      0      0                              0
+
+  0   6467   0      0   0      0      0      0                              0
+
+  0   6467   0      0   0      0      0      0                              0
+
+HTTP/1.1 200 OK
+
+date: Mon, 26 Oct 2026 01:46:20 GMT
+
+server: uvicorn
+
+content-type: text/html; charset=utf-8
+
+accept-ranges: bytes
+
+Content-Length: 6467
+
+last-modified: Mon, 26 Oct 2026 01:35:04 GMT
+
+etag: "768d326e7bc0358a271393dc7fff8618"
+
+cache-control: no-cache
+
+Via: 1.1 google
+
+Set-Cookie: GCLB=CNiAiemUpN2FCRAD; path=/; HttpOnly; expires=Mon, 26-Oct-2026 02:46:20 GMT
+
+Alt-Svc: h3=":443"; ma=2592000

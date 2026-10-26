@@ -1,3 +1,5 @@
-NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
-backend    Deployment/backend    cpu: 1%/60%   2         5         2          18m
-frontend   Deployment/frontend   cpu: 2%/60%   2         5         2          18m
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+
+backend    Deployment/backend    cpu: 1%/60%   2         5         2          18m
+
+frontend   Deployment/frontend   cpu: 2%/60%   2         5         2          18m

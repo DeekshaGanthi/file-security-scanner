@@ -1,17 +1,33 @@
-NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/backend    2/2     2            2           21m
-deployment.apps/frontend   2/2     2            2           21m
-
-NAME                           READY   STATUS    RESTARTS   AGE
-pod/backend-5b75bbd587-8mhwt   1/1     Running   0          4m13s
-pod/backend-5b75bbd587-g6bxx   1/1     Running   0          4m39s
-pod/frontend-7dbf9f65f-jc4vq   1/1     Running   0          21m
-pod/frontend-7dbf9f65f-nbjqv   1/1     Running   0          21m
-
-NAME                                           REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
-horizontalpodautoscaler.autoscaling/backend    Deployment/backend    cpu: 2%/60%   2         5         2          21m
-horizontalpodautoscaler.autoscaling/frontend   Deployment/frontend   cpu: 5%/60%   2         5         2          21m
-
-NAME                                  MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
-poddisruptionbudget.policy/backend    1               N/A               1                     21m
-poddisruptionbudget.policy/frontend   1               N/A               1                     21m
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+
+deployment.apps/backend    2/2     2            2           21m
+
+deployment.apps/frontend   2/2     2            2           21m
+
+
+
+NAME                           READY   STATUS    RESTARTS   AGE
+
+pod/backend-5b75bbd587-8mhwt   1/1     Running   0          4m13s
+
+pod/backend-5b75bbd587-g6bxx   1/1     Running   0          4m39s
+
+pod/frontend-7dbf9f65f-jc4vq   1/1     Running   0          21m
+
+pod/frontend-7dbf9f65f-nbjqv   1/1     Running   0          21m
+
+
+
+NAME                                           REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+
+horizontalpodautoscaler.autoscaling/backend    Deployment/backend    cpu: 2%/60%   2         5         2          21m
+
+horizontalpodautoscaler.autoscaling/frontend   Deployment/frontend   cpu: 5%/60%   2         5         2          21m
+
+
+
+NAME                                  MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
+
+poddisruptionbudget.policy/backend    1               N/A               1                     21m
+
+poddisruptionbudget.policy/frontend   1               N/A               1                     21m

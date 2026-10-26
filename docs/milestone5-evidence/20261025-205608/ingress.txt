@@ -1,2 +1,3 @@
-NAME      CLASS    HOSTS                             ADDRESS          PORTS   AGE
-scanner   <none>   scanner.136-69-114-222.sslip.io   136.69.114.222   80      20m
+NAME      CLASS    HOSTS                             ADDRESS          PORTS   AGE
+
+scanner   <none>   scanner.136-69-114-222.sslip.io   136.69.114.222   80      20m

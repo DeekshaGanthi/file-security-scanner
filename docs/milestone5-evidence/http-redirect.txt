@@ -1,20 +1,37 @@
-curl.exe :   % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
-At line:2 char:137
-+ ... eaders.txt; curl.exe --max-time 30 -I http://scanner.136-69-114-222.s ...
-+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (  % Total    % ... Time   Current:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- 
-                                 Dload  Upload  Total   Spent   Left   Speed
-
-  0      0   0      0   0      0      0      0                              0
-  0      0   0      0   0      0      0      0                              0
-  0      0   0      0   0      0      0      0                              0
-  0      0   0      0   0      0      0      0                              0
-HTTP/1.1 301 Moved Permanently
-Cache-Control: private
-Location: https://scanner.136-69-114-222.sslip.io:443/
-Content-Length: 0
-Date: Mon, 26 Oct 2026 01:46:21 GMT
-Content-Type: text/html; charset=UTF-8
-
+curl.exe :   % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+
+At line:2 char:137
+
++ ... eaders.txt; curl.exe --max-time 30 -I http://scanner.136-69-114-222.s ...
+
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    + CategoryInfo          : NotSpecified: (  % Total    % ... Time   Current:String) [], RemoteException
+
+    + FullyQualifiedErrorId : NativeCommandError
+
+
+
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+
+
+  0      0   0      0   0      0      0      0                              0
+
+  0      0   0      0   0      0      0      0                              0
+
+  0      0   0      0   0      0      0      0                              0
+
+  0      0   0      0   0      0      0      0                              0
+
+HTTP/1.1 301 Moved Permanently
+
+Cache-Control: private
+
+Location: https://scanner.136-69-114-222.sslip.io:443/
+
+Content-Length: 0
+
+Date: Mon, 26 Oct 2026 01:46:21 GMT
+
+Content-Type: text/html; charset=UTF-8

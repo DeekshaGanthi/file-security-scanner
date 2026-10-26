@@ -1,3 +1,5 @@
-Private PostgreSQL SELECT 1: PASS
-live 200 {'status': 'alive'}
-ready 200 {'status': 'ready', 'database': 'connected'}
+Private PostgreSQL SELECT 1: PASS
+
+live 200 {'status': 'alive'}
+
+ready 200 {'status': 'ready', 'database': 'connected'}

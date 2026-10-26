@@ -1,3 +1,5 @@
-NAME       READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                                                                                                                                                                      SELECTOR
-backend    2/2     2            2           18m   backend      us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-backend@sha256:1b8b8d4df689fb7f5d9f345fd82f5276f49e7c49b9ac290bbbef869b83214730    app=backend
-frontend   2/2     2            2           18m   frontend     us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-frontend@sha256:d82a4f0e39680cccfd87e82a7b7bb6821ef9cde84924447ecb4b4cd378cfa2f3   app=frontend
+NAME       READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                                                                                                                                                                      SELECTOR
+
+backend    2/2     2            2           18m   backend      us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-backend@sha256:1b8b8d4df689fb7f5d9f345fd82f5276f49e7c49b9ac290bbbef869b83214730    app=backend
+
+frontend   2/2     2            2           18m   frontend     us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-frontend@sha256:d82a4f0e39680cccfd87e82a7b7bb6821ef9cde84924447ecb4b4cd378cfa2f3   app=frontend

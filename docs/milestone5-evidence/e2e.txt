@@ -1,6 +1,11 @@
-Private PostgreSQL SELECT 1: PASS
-{"counts_before": {"scans": 38, "indicators": 19, "llm_reports": 18}}
-{"health": "live", "status": 200, "body": {"status": "alive"}}
-{"health": "ready", "status": 200, "body": {"status": "ready", "database": "connected"}}
-{"scan_id": 68, "filename": "milestone5-verification-85c15356-110a-4711-b701-2e97b8e162f6.txt", "risk": {"score": 0, "level": "LOW", "reasons": []}, "gemini": {"success": false, "message": "Gemini request failed; retry later"}, "history_records": 39, "gcs_objects": ["uploads/7ba5e00d-e4a2-4874-ac65-315f1e2ab904"], "counts_after": {"scans": 39, "indicators": 19, "llm_reports": 18}}
-Scan persistence, history and private GCS: PASS
+Private PostgreSQL SELECT 1: PASS
+
+{"counts_before": {"scans": 38, "indicators": 19, "llm_reports": 18}}
+
+{"health": "live", "status": 200, "body": {"status": "alive"}}
+
+{"health": "ready", "status": 200, "body": {"status": "ready", "database": "connected"}}
+
+{"scan_id": 68, "filename": "milestone5-verification-85c15356-110a-4711-b701-2e97b8e162f6.txt", "risk": {"score": 0, "level": "LOW", "reasons": []}, "gemini": {"success": false, "message": "Gemini request failed; retry later"}, "history_records": 39, "gcs_objects": ["uploads/7ba5e00d-e4a2-4874-ac65-315f1e2ab904"], "counts_after": {"scans": 39, "indicators": 19, "llm_reports": 18}}
+
+Scan persistence, history and private GCS: PASS

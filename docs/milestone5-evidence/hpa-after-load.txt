@@ -1,14 +1,27 @@
-NAME                                           REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
-horizontalpodautoscaler.autoscaling/backend    Deployment/backend    cpu: 46%/60%   2         5         3          8m20s
-horizontalpodautoscaler.autoscaling/frontend   Deployment/frontend   cpu: 3%/60%    2         5         2          8m19s
-
-NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/backend    3/3     3            3           8m20s
-deployment.apps/frontend   2/2     2            2           8m19s
-
-NAME                           READY   STATUS    RESTARTS   AGE
-pod/backend-6c476df4f-bntr5    1/1     Running   0          8m20s
-pod/backend-6c476df4f-nl2fg    1/1     Running   0          2m25s
-pod/backend-6c476df4f-vsxmt    1/1     Running   0          8m20s
-pod/frontend-7dbf9f65f-jc4vq   1/1     Running   0          8m19s
-pod/frontend-7dbf9f65f-nbjqv   1/1     Running   0          8m19s
+NAME                                           REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+
+horizontalpodautoscaler.autoscaling/backend    Deployment/backend    cpu: 46%/60%   2         5         3          8m20s
+
+horizontalpodautoscaler.autoscaling/frontend   Deployment/frontend   cpu: 3%/60%    2         5         2          8m19s
+
+
+
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+
+deployment.apps/backend    3/3     3            3           8m20s
+
+deployment.apps/frontend   2/2     2            2           8m19s
+
+
+
+NAME                           READY   STATUS    RESTARTS   AGE
+
+pod/backend-6c476df4f-bntr5    1/1     Running   0          8m20s
+
+pod/backend-6c476df4f-nl2fg    1/1     Running   0          2m25s
+
+pod/backend-6c476df4f-vsxmt    1/1     Running   0          8m20s
+
+pod/frontend-7dbf9f65f-jc4vq   1/1     Running   0          8m19s
+
+pod/frontend-7dbf9f65f-nbjqv   1/1     Running   0          8m19s

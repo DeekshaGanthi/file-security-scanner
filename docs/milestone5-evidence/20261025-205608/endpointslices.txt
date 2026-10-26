@@ -1,3 +1,5 @@
-NAME             ADDRESSTYPE   PORTS   ENDPOINTS                 AGE
-backend-kmp6t    IPv4          8000    10.110.0.20,10.110.0.21   20m
-frontend-bvrw5   IPv4          8501    10.110.0.10,10.110.0.8    20m
+NAME             ADDRESSTYPE   PORTS   ENDPOINTS                 AGE
+
+backend-kmp6t    IPv4          8000    10.110.0.20,10.110.0.21   20m
+
+frontend-bvrw5   IPv4          8501    10.110.0.10,10.110.0.8    20m

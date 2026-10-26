@@ -1,3 +1,5 @@
-NAME       MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
-backend    1               N/A               1                     18m
-frontend   1               N/A               1                     18m
+NAME       MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
+
+backend    1               N/A               1                     18m
+
+frontend   1               N/A               1                     18m

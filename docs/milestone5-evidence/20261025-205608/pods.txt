@@ -1,5 +1,9 @@
-NAME                       READY   STATUS    RESTARTS   AGE   IP            NODE                                         NOMINATED NODE   READINESS GATES
-backend-5b75bbd587-8mhwt   1/1     Running   0          70s   10.110.0.21   gk3-scanner-gke-nap-12vxm2vv-76fb375b-hr2v   <none>           <none>
-backend-5b75bbd587-g6bxx   1/1     Running   0          96s   10.110.0.20   gk3-scanner-gke-nap-12vxm2vv-76fb375b-hr2v   <none>           <none>
-frontend-7dbf9f65f-jc4vq   1/1     Running   0          18m   10.110.0.10   gk3-scanner-gke-nap-12vxm2vv-76fb375b-hr2v   <none>           1/1
-frontend-7dbf9f65f-nbjqv   1/1     Running   0          18m   10.110.0.8    gk3-scanner-gke-nap-12vxm2vv-76fb375b-hr2v   <none>           1/1
+NAME                       READY   STATUS    RESTARTS   AGE   IP            NODE                                         NOMINATED NODE   READINESS GATES
+
+backend-5b75bbd587-8mhwt   1/1     Running   0          70s   10.110.0.21   gk3-scanner-gke-nap-12vxm2vv-76fb375b-hr2v   <none>           <none>
+
+backend-5b75bbd587-g6bxx   1/1     Running   0          96s   10.110.0.20   gk3-scanner-gke-nap-12vxm2vv-76fb375b-hr2v   <none>           <none>
+
+frontend-7dbf9f65f-jc4vq   1/1     Running   0          18m   10.110.0.10   gk3-scanner-gke-nap-12vxm2vv-76fb375b-hr2v   <none>           1/1
+
+frontend-7dbf9f65f-nbjqv   1/1     Running   0          18m   10.110.0.8    gk3-scanner-gke-nap-12vxm2vv-76fb375b-hr2v   <none>           1/1

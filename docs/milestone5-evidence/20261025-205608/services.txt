@@ -1,3 +1,5 @@
-NAME       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE   SELECTOR
-backend    ClusterIP   34.118.228.87    <none>        8000/TCP   20m   app=backend
-frontend   ClusterIP   34.118.226.246   <none>        8501/TCP   20m   app=frontend
+NAME       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE   SELECTOR
+
+backend    ClusterIP   34.118.228.87    <none>        8000/TCP   20m   app=backend
+
+frontend   ClusterIP   34.118.226.246   <none>        8501/TCP   20m   app=frontend

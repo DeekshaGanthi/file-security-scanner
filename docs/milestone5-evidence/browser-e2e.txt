@@ -1,1 +1,1 @@
-{"browser_scan": {"id": 69, "filename": "browser-verification.txt", "risk_score": 0, "risk_level": "LOW"}, "saved_ai_reports": 1, "counts": {"scans": 40, "indicators": 19, "llm_reports": 19}, "gcs_objects": ["uploads/86717b32-9512-4e5d-b352-d77c09801c04"]}
+{"browser_scan": {"id": 69, "filename": "browser-verification.txt", "risk_score": 0, "risk_level": "LOW"}, "saved_ai_reports": 1, "counts": {"scans": 40, "indicators": 19, "llm_reports": 19}, "gcs_objects": ["uploads/86717b32-9512-4e5d-b352-d77c09801c04"]}

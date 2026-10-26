@@ -1,2 +1,3 @@
-NAME          AGE   STATUS
-scanner-tls   20m   Active
+NAME          AGE   STATUS
+
+scanner-tls   20m   Active

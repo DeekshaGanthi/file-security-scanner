@@ -1,2 +1,3 @@
-Deleting exactly one pod: backend-6c476df4f-bntr5
-pod "backend-6c476df4f-bntr5" deleted from scanner namespace
+Deleting exactly one pod: backend-6c476df4f-bntr5
+
+pod "backend-6c476df4f-bntr5" deleted from scanner namespace

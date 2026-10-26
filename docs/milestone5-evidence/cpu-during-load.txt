@@ -1,6 +1,11 @@
-NAME                       CPU(cores)   MEMORY(bytes)   
-backend-6c476df4f-bntr5    371m         204Mi           
-backend-6c476df4f-nl2fg    520m         148Mi           
-backend-6c476df4f-vsxmt    6m           173Mi           
-frontend-7dbf9f65f-jc4vq   7m           49Mi            
-frontend-7dbf9f65f-nbjqv   7m           49Mi            
+NAME                       CPU(cores)   MEMORY(bytes)
+
+backend-6c476df4f-bntr5    371m         204Mi
+
+backend-6c476df4f-nl2fg    520m         148Mi
+
+backend-6c476df4f-vsxmt    6m           173Mi
+
+frontend-7dbf9f65f-jc4vq   7m           49Mi
+
+frontend-7dbf9f65f-nbjqv   7m           49Mi
