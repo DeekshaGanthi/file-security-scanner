@@ -91,3 +91,6 @@
 - Follow-up browser scan persistence and AI report evidence is collected separately.
 - Confirmed browser scan ID 69 and one saved AI report; final counts 40 scans,
   19 indicators, 19 llm_reports. Private GCS UUID object verified.
+- Local commit dd2a1d7 contains the implementation and actual deployment manifests.
+  Secret-pattern scan flagged no files; git diff --check and six tests pass.
+  Evidence text normalized to UTF-8 for repository review. Push approval pending.

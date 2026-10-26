@@ -6,7 +6,7 @@
 | Separate liveness and DB-aware readiness | 8 | Verified | backend health source, six tests, container smoke; live SELECT 1 and both 200 responses in e2e.txt |
 | Live pod replacement and actual scaling | 9 | Verified | recovery before/deletion/after; HPA 2 to 3 and later 2; team must repeat live on recording |
 | Valid HTTPS and HTTP redirect | 10 | Verified | certificate-active.yaml, HTTPS 200, HTTP 301 headers, browser UI |
-| Required manifests committed | 8 | In Progress | Complete manifests prepared, commit pending |
+| Required manifests committed | 8 | Implemented | Local commit dd2a1d7 on milestone5-gke contains all deployed manifests; approved GitHub push pending |
 | Video and slides complete | 5 | In Progress | Complete 10-minute script and two-slide layout/content; team recording and Office file export remain |
 | **Total** | **50** | **In Progress** | **No final score assigned** |
 
