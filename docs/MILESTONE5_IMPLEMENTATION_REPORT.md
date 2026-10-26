@@ -92,7 +92,11 @@ submission. No video, OneDrive upload/sharing or Canvas submission is claimed.
 Feature branch: milestone5-gke. Implementation commit: dd2a1d7, 81 files changed.
 All required manifests, source changes, scripts, tests and actual evidence are locally
 committed. A final documentation/evidence-encoding follow-up follows that commit.
-GitHub push requires user approval and is pending. Main is not merged; no force-push.
+GitHub push was approved and completed. Remote branch milestone5-gke was verified at
+7cbc89977ab1005bfa089000c83def67d4469a5c (implementation plus evidence follow-ups).
+The final status documentation is committed afterwards on the same approved branch.
+Commits: dd2a1d7 implementation, d43f799 final report/evidence, 7cbc899 line endings.
+Main is not merged; no force-push performed.
 Existing backend.zip and .env are preserved and excluded.
 
 New baseline workloads/networking estimated $65-$100/month plus usage and existing
@@ -103,7 +107,7 @@ Detailed assumptions and official price sources: MILESTONE5_ARCHITECTURE.md.
 
 ## Remaining work and rubric
 
-Obtain push approval, then publish the reviewed local branch. Export Office
+Branch publication is complete. Export Office
 materials, capture final screenshots, record the ten-minute camera-on demonstration,
 upload to OneDrive, share with all three instructors and submit its link in Canvas.
 The team must repeat recovery and HPA live on video. See MILESTONE5_RUBRIC.md for

@@ -94,3 +94,5 @@
 - Local commit dd2a1d7 contains the implementation and actual deployment manifests.
   Secret-pattern scan flagged no files; git diff --check and six tests pass.
   Evidence text normalized to UTF-8 for repository review. Push approval pending.
+- User approved GitHub push. Published milestone5-gke, verified remote commit
+  7cbc89977ab1005bfa089000c83def67d4469a5c. Main remains unchanged.
