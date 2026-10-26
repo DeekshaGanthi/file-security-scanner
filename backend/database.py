@@ -39,47 +39,47 @@ from psycopg.rows import dict_row
 # 1. PostgreSQL Database Connection
 # ============================================================
 
+from contextlib import contextmanager
+from functools import lru_cache
+from psycopg_pool import ConnectionPool
+from backend.secrets import secret_value
+
+
+@lru_cache(maxsize=1)
+def get_pool():
+    return ConnectionPool(
+        conninfo="",
+        kwargs={
+            "host": os.environ["DB_HOST"],
+            "port": int(os.getenv("DB_PORT", "5432")),
+            "dbname": os.environ["DB_NAME"],
+            "user": os.environ["DB_USER"],
+            "password": secret_value("DB_PASSWORD"),
+            "sslmode": os.getenv("DB_SSLMODE", "require"),
+            "row_factory": dict_row,
+            "connect_timeout": 2,
+            "options": "-c statement_timeout=2000 -c lock_timeout=1000",
+        },
+        min_size=0, max_size=int(os.getenv("DB_POOL_MAX", "5")),
+        timeout=2, max_waiting=16, open=True,
+        check=ConnectionPool.check_connection,
+    )
+
+
+@contextmanager
 def get_connection():
-    """
-    Establish a secure connection to Cloud SQL PostgreSQL.
+    with get_pool().connection(timeout=2) as connection:
+        yield connection
 
-    Returns:
-        psycopg.Connection: Active PostgreSQL connection.
-    """
 
-    # Check that all required environment variables exist.
-    required_variables = (
-        "DB_HOST",
-        "DB_NAME",
-        "DB_USER",
-        "DB_PASSWORD",
-    )
-
-    missing_variables = [
-        variable
-        for variable in required_variables
-        if not os.getenv(variable)
-    ]
-
-    if missing_variables:
-        raise RuntimeError(
-            "Missing database environment variables: "
-            + ", ".join(missing_variables)
-        )
-
-    # Connect to PostgreSQL using the configured settings.
-    connection = psycopg.connect(
-        host=os.environ["DB_HOST"],
-        port=int(os.getenv("DB_PORT", "5432")),
-        dbname=os.environ["DB_NAME"],
-        user=os.environ["DB_USER"],
-        password=os.environ["DB_PASSWORD"],
-        sslmode=os.getenv("DB_SSLMODE", "require"),
-        row_factory=dict_row,
-        connect_timeout=10,
-    )
-
-    return connection
+def check_database():
+    # Dedicated short-lived connection: no waiting behind long scan requests.
+    # First use resolves the configured secret; subsequent checks use cached credentials.
+    pool = get_pool()
+    with psycopg.connect(**pool.kwargs) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1")
+            cursor.fetchone()
 
 
 # ============================================================

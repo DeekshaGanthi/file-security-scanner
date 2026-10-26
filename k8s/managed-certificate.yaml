@@ -1,0 +1,13 @@
+{
+  "apiVersion": "networking.gke.io/v1",
+  "kind": "ManagedCertificate",
+  "metadata": {
+    "name": "scanner-tls",
+    "namespace": "scanner"
+  },
+  "spec": {
+    "domains": [
+      "scanner.136-69-114-222.sslip.io"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "autopilot": {
+    "enabled": true
+  },
+  "location": "us-central1",
+  "name": "scanner-gke",
+  "network": "default",
+  "status": "RUNNING",
+  "subnetwork": "default",
+  "workloadIdentityConfig": {
+    "workloadPool": "file-security-scanner.svc.id.goog"
+  }
+}

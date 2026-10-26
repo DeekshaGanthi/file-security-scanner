@@ -75,9 +75,11 @@ if uploaded_file:
 
                 response = requests.post(
                     f"{API_URL}/scan",
-                    files=files
+                    files=files,
+                    timeout=(5, 180)
                 )
 
+                response.raise_for_status()
                 result = response.json()
 
             except Exception as error:
@@ -182,9 +184,10 @@ if st.button(
     try:
 
         response = requests.get(
-            f"{API_URL}/scans"
+            f"{API_URL}/scans", timeout=(5, 20)
         )
 
+        response.raise_for_status()
         scans = response.json()
 
         st.dataframe(

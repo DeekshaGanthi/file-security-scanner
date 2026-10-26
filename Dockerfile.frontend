@@ -1,0 +1,8 @@
+FROM python:3.12-slim
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 HOME=/tmp
+WORKDIR /app
+RUN pip install --no-cache-dir streamlit requests && useradd --uid 10001 --create-home scanner
+COPY frontend ./frontend
+USER 10001
+EXPOSE 8501
+CMD ["streamlit", "run", "frontend/app.py", "--server.address=0.0.0.0", "--server.port=8501", "--server.headless=true", "--server.maxUploadSize=20", "--browser.gatherUsageStats=false"]

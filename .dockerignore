@@ -37,3 +37,5 @@ Thumbs.db
 *.zip
 *.log
 .pytest_cache/
+milestone5-tmp/
+docs/milestone5-evidence/

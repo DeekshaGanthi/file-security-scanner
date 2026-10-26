@@ -1,19 +1,28 @@
 import os
 from dotenv import load_dotenv
 from google import genai
+from google.genai import types
 
 load_dotenv()
 
-MODEL_NAME = "gemini-3.6-flash"
+MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")
 
 
 def get_gemini_analysis(analysis, risk):
-    api_key = os.getenv("GEMINI_API_KEY")
-    if not api_key:
-        return {"success": False, "message": "Gemini API key not found"}
+    from backend.secrets import secret_value
+    try:
+        api_key = secret_value("GEMINI_API_KEY")
+    except Exception:
+        return {"success": False, "message": "Gemini credentials unavailable"}
 
     try:
-        client = genai.Client(api_key=api_key)
+        client = genai.Client(
+            api_key=api_key,
+            http_options=types.HttpOptions(
+                timeout=30000,
+                retry_options=types.HttpRetryOptions(attempts=1),
+            ),
+        )
 
         prompt = f"""
 You are an AI cybersecurity analyst.
@@ -44,6 +53,7 @@ RECOMMENDED ACTIONS:
         interaction = client.interactions.create(
             model=MODEL_NAME,
             input=prompt,
+            timeout=30,
         )
 
         return {
@@ -53,4 +63,6 @@ RECOMMENDED ACTIONS:
         }
 
     except Exception as error:
-        return {"success": False, "message": str(error)}
+        if type(error).__name__ == "RateLimitError" or getattr(error, "code", None) == 429:
+            return {"success": False, "message": "Gemini rate limit reached; retry later"}
+        return {"success": False, "message": "Gemini request failed; retry later"}

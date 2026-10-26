@@ -1,16 +1,15 @@
 import os
-import shutil
 import time
 import uuid
+from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.yara_engine import scan_with_yara
 from backend.virustotal import check_virustotal_hash
 
 from backend.database import (
-    create_tables,
     save_scan,
     save_indicator,
     save_llm_report,
@@ -29,7 +28,15 @@ from backend.cloud_storage import upload_file_to_gcs
 # 1. FastAPI Application Configuration
 # ============================================================
 
-app = FastAPI(title="AI File Security Scanner")
+@asynccontextmanager
+async def lifespan(app):
+    yield
+    from backend.database import get_pool
+    if get_pool.cache_info().currsize:
+        get_pool().close()
+
+
+app = FastAPI(title="AI File Security Scanner", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -46,7 +53,7 @@ app.add_middleware(
 
 # Files are stored here only while they are being processed.
 # The permanent copy is stored in Google Cloud Storage.
-UPLOAD_FOLDER = "uploads"
+UPLOAD_FOLDER = os.getenv("UPLOAD_FOLDER", "/tmp/scanner-uploads")
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
@@ -56,7 +63,9 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 # ============================================================
 
 # Verify that the required PostgreSQL tables exist.
-create_tables()
+# Schema is managed separately; pod startup must not depend on database availability.
+from backend.health import router as health_router
+app.include_router(health_router)
 
 
 # ============================================================
@@ -98,7 +107,13 @@ def scan_file(file: UploadFile = File(...)):
         t0 = time.perf_counter()
 
         with open(file_path, "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
+            max_bytes = int(os.getenv("MAX_UPLOAD_BYTES", "20971520"))
+            total = 0
+            while chunk := file.file.read(65536):
+                total += len(chunk)
+                if total > max_bytes:
+                    raise HTTPException(status_code=413, detail="File exceeds upload limit")
+                buffer.write(chunk)
 
         timings["disk_write_ms"] = (
             time.perf_counter() - t0

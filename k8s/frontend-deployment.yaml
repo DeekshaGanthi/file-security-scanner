@@ -1,0 +1,148 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "name": "frontend",
+    "namespace": "scanner"
+  },
+  "spec": {
+    "replicas": 2,
+    "selector": {
+      "matchLabels": {
+        "app": "frontend"
+      }
+    },
+    "strategy": {
+      "type": "RollingUpdate",
+      "rollingUpdate": {
+        "maxUnavailable": 0,
+        "maxSurge": 1
+      }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "frontend"
+        }
+      },
+      "spec": {
+        "serviceAccountName": "scanner-frontend",
+        "terminationGracePeriodSeconds": 200,
+        "securityContext": {
+          "runAsNonRoot": true,
+          "runAsUser": 10001,
+          "runAsGroup": 10001,
+          "fsGroup": 10001,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "containers": [
+          {
+            "name": "frontend",
+            "image": "us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-frontend@sha256:d82a4f0e39680cccfd87e82a7b7bb6821ef9cde84924447ecb4b4cd378cfa2f3",
+            "ports": [
+              {
+                "containerPort": 8501,
+                "name": "http"
+              }
+            ],
+            "env": [
+              {
+                "name": "API_URL",
+                "value": "http://backend:8000"
+              },
+              {
+                "name": "HOME",
+                "value": "/tmp"
+              },
+              {
+                "name": "STREAMLIT_SERVER_COOKIE_SECRET",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "streamlit-session",
+                    "key": "cookie-secret"
+                  }
+                }
+              }
+            ],
+            "resources": {
+              "requests": {
+                "cpu": "250m",
+                "memory": "512Mi",
+                "ephemeral-storage": "1Gi"
+              },
+              "limits": {
+                "cpu": "1000m",
+                "memory": "512Mi",
+                "ephemeral-storage": "1Gi"
+              }
+            },
+            "livenessProbe": {
+              "httpGet": {
+                "path": "/_stcore/health",
+                "port": 8501
+              },
+              "periodSeconds": 10,
+              "timeoutSeconds": 3,
+              "failureThreshold": 3
+            },
+            "readinessProbe": {
+              "httpGet": {
+                "path": "/_stcore/health",
+                "port": 8501
+              },
+              "periodSeconds": 10,
+              "timeoutSeconds": 3,
+              "failureThreshold": 3
+            },
+            "startupProbe": {
+              "httpGet": {
+                "path": "/_stcore/health",
+                "port": 8501
+              },
+              "periodSeconds": 5,
+              "timeoutSeconds": 3,
+              "failureThreshold": 60
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "readOnlyRootFilesystem": true,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              }
+            },
+            "volumeMounts": [
+              {
+                "name": "tmp",
+                "mountPath": "/tmp"
+              }
+            ]
+          }
+        ],
+        "volumes": [
+          {
+            "name": "tmp",
+            "emptyDir": {
+              "sizeLimit": "512Mi"
+            }
+          }
+        ],
+        "topologySpreadConstraints": [
+          {
+            "maxSkew": 1,
+            "topologyKey": "kubernetes.io/hostname",
+            "whenUnsatisfiable": "ScheduleAnyway",
+            "labelSelector": {
+              "matchLabels": {
+                "app": "frontend"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -2,3 +2,9 @@
 scanner.db
 __pycache__/
 *.pyc
+
+# Local tooling and generated deployment inputs (commit finalized manifests separately)
+.venv/
+milestone5-tmp/
+backend.zip
+.pytest_cache/

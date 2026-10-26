@@ -8,5 +8,6 @@ google-genai
 pymupdf
 pillow
 yara-python
-psycopg[binary]
+psycopg[binary,pool]
 google-cloud-storage
+google-cloud-secret-manager

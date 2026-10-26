@@ -1,0 +1,167 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "name": "backend",
+    "namespace": "scanner"
+  },
+  "spec": {
+    "replicas": 2,
+    "selector": {
+      "matchLabels": {
+        "app": "backend"
+      }
+    },
+    "strategy": {
+      "type": "RollingUpdate",
+      "rollingUpdate": {
+        "maxUnavailable": 0,
+        "maxSurge": 1
+      }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "backend"
+        }
+      },
+      "spec": {
+        "serviceAccountName": "scanner-api",
+        "terminationGracePeriodSeconds": 200,
+        "securityContext": {
+          "runAsNonRoot": true,
+          "runAsUser": 10001,
+          "runAsGroup": 10001,
+          "fsGroup": 10001,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "containers": [
+          {
+            "name": "backend",
+            "image": "us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-backend@sha256:1b8b8d4df689fb7f5d9f345fd82f5276f49e7c49b9ac290bbbef869b83214730",
+            "ports": [
+              {
+                "containerPort": 8000,
+                "name": "http"
+              }
+            ],
+            "env": [
+              {
+                "name": "DB_HOST",
+                "value": "172.27.208.3"
+              },
+              {
+                "name": "DB_NAME",
+                "value": "scanner_db"
+              },
+              {
+                "name": "DB_USER",
+                "value": "scanner_app"
+              },
+              {
+                "name": "DB_SSLMODE",
+                "value": "require"
+              },
+              {
+                "name": "DB_POOL_MAX",
+                "value": "5"
+              },
+              {
+                "name": "GCS_BUCKET_NAME",
+                "value": "file-security-scanner-uploads-2026"
+              },
+              {
+                "name": "DB_PASSWORD_SECRET",
+                "value": "projects/file-security-scanner/secrets/scanner-db-password/versions/latest"
+              },
+              {
+                "name": "GEMINI_API_KEY_SECRET",
+                "value": "projects/file-security-scanner/secrets/gemini-api-key/versions/latest"
+              },
+              {
+                "name": "HOME",
+                "value": "/tmp"
+              }
+            ],
+            "resources": {
+              "requests": {
+                "cpu": "250m",
+                "memory": "1Gi",
+                "ephemeral-storage": "1Gi"
+              },
+              "limits": {
+                "cpu": "1000m",
+                "memory": "1Gi",
+                "ephemeral-storage": "1Gi"
+              }
+            },
+            "livenessProbe": {
+              "httpGet": {
+                "path": "/health/live",
+                "port": 8000
+              },
+              "periodSeconds": 10,
+              "timeoutSeconds": 3,
+              "failureThreshold": 3
+            },
+            "readinessProbe": {
+              "httpGet": {
+                "path": "/health/ready",
+                "port": 8000
+              },
+              "periodSeconds": 10,
+              "timeoutSeconds": 10,
+              "failureThreshold": 3
+            },
+            "startupProbe": {
+              "httpGet": {
+                "path": "/health/live",
+                "port": 8000
+              },
+              "periodSeconds": 5,
+              "timeoutSeconds": 3,
+              "failureThreshold": 60
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "readOnlyRootFilesystem": true,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              }
+            },
+            "volumeMounts": [
+              {
+                "name": "tmp",
+                "mountPath": "/tmp"
+              }
+            ]
+          }
+        ],
+        "volumes": [
+          {
+            "name": "tmp",
+            "emptyDir": {
+              "sizeLimit": "512Mi"
+            }
+          }
+        ],
+        "topologySpreadConstraints": [
+          {
+            "maxSkew": 1,
+            "topologyKey": "kubernetes.io/hostname",
+            "whenUnsatisfiable": "ScheduleAnyway",
+            "labelSelector": {
+              "matchLabels": {
+                "app": "backend"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
