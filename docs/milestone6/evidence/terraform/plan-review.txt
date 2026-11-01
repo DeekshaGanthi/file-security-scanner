@@ -1,0 +1,15 @@
+Terraform 1.14.9; Google provider 7.29.0
+Read-only refreshed plans; no apply/import executed.
+
+Six existing resources
+Plan: 6 to import, 0 to add, 0 to change, 0 to destroy.
+
+Detailed exit code: 2
+
+Monitoring and CI identities
+Plan: 10 to add, 0 to change, 0 to destroy.
+
+Detailed exit code: 2
+Private versioned state bucket bootstrap
+Plan: 1 to add, 0 to change, 0 to destroy.
+Detailed exit code: 2

@@ -1,0 +1,66 @@
+{
+  "start": "2026-11-01T21:59:10.304112+00:00",
+  "end": "2026-11-01T22:29:10.304112+00:00",
+  "observations": [
+    {
+      "metric": "kubernetes.io/container/cpu/core_usage_time",
+      "component": "backend",
+      "time_series_count": 1,
+      "point_count": 30,
+      "latest_observed_point": {
+        "interval": {
+          "startTime": "2026-11-01T22:29:10.304112Z",
+          "endTime": "2026-11-01T22:29:10.304112Z"
+        },
+        "value": {
+          "doubleValue": 0.005126433490374893
+        }
+      }
+    },
+    {
+      "metric": "kubernetes.io/container/cpu/core_usage_time",
+      "component": "frontend",
+      "time_series_count": 1,
+      "point_count": 30,
+      "latest_observed_point": {
+        "interval": {
+          "startTime": "2026-11-01T22:29:10.304112Z",
+          "endTime": "2026-11-01T22:29:10.304112Z"
+        },
+        "value": {
+          "doubleValue": 0.015970345296220025
+        }
+      }
+    },
+    {
+      "metric": "kubernetes.io/container/memory/used_bytes",
+      "component": "backend",
+      "time_series_count": 1,
+      "point_count": 30,
+      "latest_observed_point": {
+        "interval": {
+          "startTime": "2026-11-01T22:29:10.304112Z",
+          "endTime": "2026-11-01T22:29:10.304112Z"
+        },
+        "value": {
+          "doubleValue": 493273088
+        }
+      }
+    },
+    {
+      "metric": "kubernetes.io/container/memory/used_bytes",
+      "component": "frontend",
+      "time_series_count": 1,
+      "point_count": 30,
+      "latest_observed_point": {
+        "interval": {
+          "startTime": "2026-11-01T22:29:10.304112Z",
+          "endTime": "2026-11-01T22:29:10.304112Z"
+        },
+        "value": {
+          "doubleValue": 156123136
+        }
+      }
+    }
+  ]
+}

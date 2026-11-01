@@ -1,0 +1,28 @@
+Terraform 1.14.9 / Google 7.29.0
+terraform
+Command: terraform plan -refresh=true -detailed-exitcode -input=false -no-color
+google_monitoring_notification_channel.team: Refreshing state... [id=projects/file-security-scanner/notificationChannels/1894265117624298755]
+google_logging_metric.http_5xx: Refreshing state... [id=scanner_http_5xx_count]
+google_secret_manager_secret.gemini: Refreshing state... [id=projects/file-security-scanner/secrets/gemini-api-key]
+data.google_project.current: Reading...
+google_service_account.deploy: Refreshing state... [id=projects/file-security-scanner/serviceAccounts/scanner-deploy@file-security-scanner.iam.gserviceaccount.com]
+google_storage_bucket.uploads: Refreshing state... [id=file-security-scanner-uploads-2026]
+google_secret_manager_secret.database: Refreshing state... [id=projects/file-security-scanner/secrets/scanner-db-password]
+google_iam_workload_identity_pool.github: Refreshing state... [id=projects/file-security-scanner/locations/global/workloadIdentityPools/scanner-github]
+google_sql_database_instance.scanner: Refreshing state... [id=file-scanner-postgres]
+google_container_cluster.scanner: Refreshing state... [id=projects/file-security-scanner/locations/us-central1/clusters/scanner-gke]
+google_artifact_registry_repository.images: Refreshing state... [id=projects/file-security-scanner/locations/us-central1/repositories/file-security-scanner-repo]
+google_monitoring_dashboard.scanner: Refreshing state... [id=projects/956088853573/dashboards/014b4b60-8667-45b8-8445-e7e736abae7e]
+google_project_iam_member.cluster_read: Refreshing state... [id=file-security-scanner/roles/container.clusterViewer/serviceAccount:scanner-deploy@file-security-scanner.iam.gserviceaccount.com]
+google_artifact_registry_repository_iam_member.deploy: Refreshing state... [id=projects/file-security-scanner/locations/us-central1/repositories/file-security-scanner-repo/roles/artifactregistry.writer/serviceAccount:scanner-deploy@file-security-scanner.iam.gserviceaccount.com]
+google_monitoring_alert_policy.http_5xx: Refreshing state... [id=projects/file-security-scanner/alertPolicies/3124806542354479175]
+google_service_account_iam_member.github: Refreshing state... [id=projects/file-security-scanner/serviceAccounts/scanner-deploy@file-security-scanner.iam.gserviceaccount.com/roles/iam.workloadIdentityUser/principalSet://iam.googleapis.com/projects/956088853573/locations/global/workloadIdentityPools/scanner-github/attribute.repository/DeekshaGanthi/file-security-scanner]
+google_iam_workload_identity_pool_provider.github: Refreshing state... [id=projects/file-security-scanner/locations/global/workloadIdentityPools/scanner-github/providers/github]
+data.google_project.current: Read complete after 0s [id=projects/file-security-scanner]
+
+No changes. Your infrastructure matches the configuration.
+
+Terraform has compared your real infrastructure against your configuration
+and found no differences, so no changes are needed.
+
+Exit code: 0

@@ -1,0 +1,7 @@
+{
+  "name": "projects/file-security-scanner/notificationChannels/1894265117624298755",
+  "displayName": "Scanner authorized team email",
+  "type": "email",
+  "enabled": true,
+  "verificationStatus": null
+}

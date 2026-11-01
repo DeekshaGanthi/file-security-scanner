@@ -1,0 +1,3 @@
+Policy and authorized email channel created and enabled November 1, 2026.
+Definitions captured through the actual Monitoring API; recipient labels redacted.
+Controlled 503, incident, actual notification receipt and screenshots: PENDING.

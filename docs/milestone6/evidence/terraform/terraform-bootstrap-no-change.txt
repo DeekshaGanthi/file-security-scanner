@@ -1,0 +1,11 @@
+Terraform 1.14.9 / Google 7.29.0
+terraform/bootstrap
+Command: terraform plan -refresh=true -detailed-exitcode -input=false -no-color
+google_storage_bucket.state: Refreshing state... [id=file-security-scanner-tfstate-956088853573]
+
+No changes. Your infrastructure matches the configuration.
+
+Terraform has compared your real infrastructure against your configuration
+and found no differences, so no changes are needed.
+
+Exit code: 0

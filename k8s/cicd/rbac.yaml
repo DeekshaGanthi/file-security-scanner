@@ -1,0 +1,33 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: scanner-deploy
+  namespace: scanner
+rules:
+  - apiGroups: [apps]
+    resources: [deployments]
+    resourceNames: [backend, frontend]
+    verbs: [get, patch, watch]
+  - apiGroups: [apps]
+    resources: [replicasets]
+    verbs: [get, list]
+  - apiGroups: [""]
+    resources: [pods]
+    verbs: [get, list]
+  - apiGroups: [""]
+    resources: [pods/exec]
+    verbs: [create]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: scanner-deploy
+  namespace: scanner
+subjects:
+  - kind: User
+    name: scanner-deploy@file-security-scanner.iam.gserviceaccount.com
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: scanner-deploy
+  apiGroup: rbac.authorization.k8s.io

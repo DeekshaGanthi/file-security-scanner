@@ -1,5 +1,6 @@
 import os
 import yara
+from backend.logging_config import emit_event
 
 # Embedded production-grade detection rules
 DEFAULT_RULES = """
@@ -65,7 +66,7 @@ try:
     _compiled_rules = yara.compile(source=DEFAULT_RULES)
 except Exception as e:
     _compiled_rules = None
-    print(f"[!] Error compiling YARA rules: {e}")
+    emit_event("yara_initialization", "YARA compilation failed", "ERROR")
 
 
 def scan_with_yara(file_path: str):

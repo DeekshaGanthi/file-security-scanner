@@ -1,0 +1,45 @@
+{
+  "name": "projects/file-security-scanner/alertPolicies/3124806542354479175",
+  "displayName": "AI File Security Scanner \u2014 HTTP 5xx Alert",
+  "combiner": "OR",
+  "creationRecord": {
+    "mutateTime": "2026-11-01T22:06:36.321327745Z",
+    "mutatedBy": "saideekshaganthi@gmail.com"
+  },
+  "mutationRecord": {
+    "mutateTime": "2026-11-01T22:06:36.321327745Z",
+    "mutatedBy": "saideekshaganthi@gmail.com"
+  },
+  "conditions": [
+    {
+      "conditionThreshold": {
+        "filter": "metric.type=\"logging.googleapis.com/user/scanner_http_5xx_count\" AND resource.type=\"k8s_container\" AND resource.labels.project_id=\"file-security-scanner\" AND resource.labels.location=\"us-central1\" AND resource.labels.cluster_name=\"scanner-gke\" AND resource.labels.namespace_name=\"scanner\"",
+        "comparison": "COMPARISON_GT",
+        "duration": "0s",
+        "trigger": {
+          "count": 1
+        },
+        "aggregations": [
+          {
+            "alignmentPeriod": "300s",
+            "perSeriesAligner": "ALIGN_SUM",
+            "crossSeriesReducer": "REDUCE_SUM"
+          }
+        ]
+      },
+      "displayName": "At least one backend 5xx in a five-minute interval",
+      "name": "projects/file-security-scanner/alertPolicies/3124806542354479175/conditions/3124806542354478678"
+    }
+  ],
+  "documentation": {
+    "content": "Backend returned HTTP 5xx. Check Cloud Logging for event=http_request and numeric http_status>=500. Controlled demo events include controlled_failure=true.",
+    "mimeType": "text/markdown"
+  },
+  "notificationChannels": [
+    "projects/file-security-scanner/notificationChannels/1894265117624298755"
+  ],
+  "enabled": true,
+  "alertStrategy": {
+    "autoClose": "1800s"
+  }
+}

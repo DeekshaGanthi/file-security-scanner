@@ -1,0 +1,138 @@
+{
+  "name": "projects/956088853573/dashboards/014b4b60-8667-45b8-8445-e7e736abae7e",
+  "displayName": "AI File Security Scanner \u2014 Milestone 6 Observability",
+  "etag": "06382c5c3ce3d2fa5988e4a6609582d7",
+  "gridLayout": {
+    "columns": "1",
+    "widgets": [
+      {
+        "title": "HTTP 5xx error count (per minute)",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"logging.googleapis.com/user/scanner_http_5xx_count\" AND resource.type=\"k8s_container\" AND resource.labels.project_id=\"file-security-scanner\" AND resource.labels.location=\"us-central1\" AND resource.labels.cluster_name=\"scanner-gke\" AND resource.labels.namespace_name=\"scanner\" AND resource.labels.container_name=\"backend\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_SUM",
+                    "crossSeriesReducer": "REDUCE_SUM",
+                    "groupByFields": [
+                      "resource.label.container_name"
+                    ]
+                  }
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE",
+              "legendTemplate": "backend",
+              "targetAxis": "Y1"
+            }
+          ],
+          "yAxis": {
+            "label": "1",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "CPU usage (cores)",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" AND resource.type=\"k8s_container\" AND resource.labels.project_id=\"file-security-scanner\" AND resource.labels.location=\"us-central1\" AND resource.labels.cluster_name=\"scanner-gke\" AND resource.labels.namespace_name=\"scanner\" AND resource.labels.container_name=\"backend\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_RATE",
+                    "crossSeriesReducer": "REDUCE_SUM",
+                    "groupByFields": [
+                      "resource.label.container_name"
+                    ]
+                  }
+                },
+                "unitOverride": "{CPU}"
+              },
+              "plotType": "LINE",
+              "legendTemplate": "backend",
+              "targetAxis": "Y1"
+            },
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/container/cpu/core_usage_time\" AND resource.type=\"k8s_container\" AND resource.labels.project_id=\"file-security-scanner\" AND resource.labels.location=\"us-central1\" AND resource.labels.cluster_name=\"scanner-gke\" AND resource.labels.namespace_name=\"scanner\" AND resource.labels.container_name=\"frontend\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_RATE",
+                    "crossSeriesReducer": "REDUCE_SUM",
+                    "groupByFields": [
+                      "resource.label.container_name"
+                    ]
+                  }
+                },
+                "unitOverride": "{CPU}"
+              },
+              "plotType": "LINE",
+              "legendTemplate": "frontend",
+              "targetAxis": "Y1"
+            }
+          ],
+          "yAxis": {
+            "label": "{CPU}",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "Memory usage (bytes)",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" AND resource.type=\"k8s_container\" AND resource.labels.project_id=\"file-security-scanner\" AND resource.labels.location=\"us-central1\" AND resource.labels.cluster_name=\"scanner-gke\" AND resource.labels.namespace_name=\"scanner\" AND resource.labels.container_name=\"backend\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_SUM",
+                    "groupByFields": [
+                      "resource.label.container_name"
+                    ]
+                  }
+                },
+                "unitOverride": "By"
+              },
+              "plotType": "LINE",
+              "legendTemplate": "backend",
+              "targetAxis": "Y1"
+            },
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/container/memory/used_bytes\" AND resource.type=\"k8s_container\" AND resource.labels.project_id=\"file-security-scanner\" AND resource.labels.location=\"us-central1\" AND resource.labels.cluster_name=\"scanner-gke\" AND resource.labels.namespace_name=\"scanner\" AND resource.labels.container_name=\"frontend\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_SUM",
+                    "groupByFields": [
+                      "resource.label.container_name"
+                    ]
+                  }
+                },
+                "unitOverride": "By"
+              },
+              "plotType": "LINE",
+              "legendTemplate": "frontend",
+              "targetAxis": "Y1"
+            }
+          ],
+          "yAxis": {
+            "label": "By",
+            "scale": "LINEAR"
+          }
+        }
+      }
+    ]
+  }
+}

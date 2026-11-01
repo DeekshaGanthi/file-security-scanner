@@ -1,0 +1,27 @@
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/backend    2/2     2            2           6d20h
+deployment.apps/frontend   2/2     2            2           6d20h
+
+NAME                           READY   STATUS    RESTARTS   AGE
+pod/backend-5b75bbd587-8ds4b   1/1     Running   0          2d15h
+pod/backend-5b75bbd587-h457v   1/1     Running   0          2d14h
+pod/frontend-7dbf9f65f-lsrrs   1/1     Running   0          2d14h
+pod/frontend-7dbf9f65f-p4ndz   1/1     Running   0          2d15h
+
+NAME               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+service/backend    ClusterIP   34.118.228.87    <none>        8000/TCP   6d20h
+service/frontend   ClusterIP   34.118.226.246   <none>        8501/TCP   6d20h
+
+NAME                                CLASS    HOSTS                             ADDRESS          PORTS   AGE
+ingress.networking.k8s.io/scanner   <none>   scanner.136-69-114-222.sslip.io   136.69.114.222   80      6d20h
+
+NAME                                           REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/backend    Deployment/backend    cpu: 2%/60%   2         5         2          6d20h
+horizontalpodautoscaler.autoscaling/frontend   Deployment/frontend   cpu: 6%/60%   2         5         2          6d20h
+
+NAME                                  MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
+poddisruptionbudget.policy/backend    1               N/A               1                     6d20h
+poddisruptionbudget.policy/frontend   1               N/A               1                     6d20h
+
+NAME                                               AGE     STATUS
+managedcertificate.networking.gke.io/scanner-tls   6d20h   Active

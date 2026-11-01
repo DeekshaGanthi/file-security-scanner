@@ -5,6 +5,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from backend.logging_config import RequestLoggingMiddleware, emit_event
 
 from backend.yara_engine import scan_with_yara
 from backend.virustotal import check_virustotal_hash
@@ -45,6 +46,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.add_middleware(RequestLoggingMiddleware)
 
 
 # ============================================================
@@ -143,9 +145,7 @@ def scan_file(file: UploadFile = File(...)):
             time.perf_counter() - t0
         ) * 1000
 
-        print(
-            f"File uploaded to Cloud Storage: {gcs_uri}"
-        )
+        emit_event("storage_upload", "File uploaded to Cloud Storage")
 
         # ====================================================
         # Step 3: Static File Analysis
@@ -253,34 +253,8 @@ def scan_file(file: UploadFile = File(...)):
             time.perf_counter() - t_start
         ) * 1000
 
-        print("\n" + "=" * 45)
-        print(
-            f"PERFORMANCE PROFILING: {file.filename}"
-        )
-        print("-" * 45)
-
-        for stage, duration in timings.items():
-
-            pct = (
-                (duration / total_ms) * 100
-                if total_ms > 0
-                else 0
-            )
-
-            print(
-                f"  {stage:<18}: "
-                f"{duration:>8.2f} ms "
-                f"({pct:>5.1f}%)"
-            )
-
-        print("-" * 45)
-
-        print(
-            f"  {'TOTAL':<18}: "
-            f"{total_ms:>8.2f} ms"
-        )
-
-        print("=" * 45 + "\n")
+        emit_event("scan_timing", "Scan completed", total_ms=round(total_ms, 2),
+                   timings_ms={k: round(v, 2) for k, v in timings.items()})
 
         # ====================================================
         # Step 11: Return Scan Results

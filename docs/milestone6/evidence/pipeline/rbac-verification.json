@@ -1,0 +1,42 @@
+[
+  {
+    "operation": "get deployment/backend",
+    "allowed": true,
+    "expected": true
+  },
+  {
+    "operation": "patch deployment/backend",
+    "allowed": true,
+    "expected": true
+  },
+  {
+    "operation": "patch deployment/frontend",
+    "allowed": true,
+    "expected": true
+  },
+  {
+    "operation": "patch deployment/unrelated",
+    "allowed": false,
+    "expected": false
+  },
+  {
+    "operation": "list pods",
+    "allowed": true,
+    "expected": true
+  },
+  {
+    "operation": "create pods --subresource=exec",
+    "allowed": true,
+    "expected": true
+  },
+  {
+    "operation": "get secrets",
+    "allowed": false,
+    "expected": false
+  },
+  {
+    "operation": "create pods",
+    "allowed": false,
+    "expected": false
+  }
+]

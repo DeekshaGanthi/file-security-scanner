@@ -39,3 +39,7 @@ Thumbs.db
 .pytest_cache/
 milestone5-tmp/
 docs/milestone5-evidence/
+milestone6-tmp/
+terraform/
+docs/milestone6/evidence/
+gha-creds-*.json

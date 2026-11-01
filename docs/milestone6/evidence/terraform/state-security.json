@@ -1,0 +1,8 @@
+{
+  "name": "file-security-scanner-tfstate-956088853573",
+  "public_access_prevention": "enforced",
+  "uniform_bucket_level_access": true,
+  "versioning_enabled": true,
+  "public_principals_in_bucket_policy": false,
+  "ci_user_managed_key_count": 0
+}

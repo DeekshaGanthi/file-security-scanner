@@ -8,3 +8,12 @@ __pycache__/
 milestone5-tmp/
 backend.zip
 .pytest_cache/
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+!*.tfvars.example
+crash.log
+gha-creds-*.json
+milestone6-tmp/

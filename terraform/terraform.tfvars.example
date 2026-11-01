@@ -1,0 +1,4 @@
+project_id         = "file-security-scanner"
+region             = "us-central1"
+cluster_name       = "scanner-gke"
+notification_email = "REPLACE_WITH_AUTHORIZED_TEAM_EMAIL"
