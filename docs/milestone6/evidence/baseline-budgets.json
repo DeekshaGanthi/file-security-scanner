@@ -1,1 +1,5 @@
-{"inspection_status":"HTTP 403 Forbidden", "verified":false, "changes_made":false}
+{
+  "inspection_status": "HTTP 403 Forbidden",
+  "verified": false,
+  "changes_made": false
+}

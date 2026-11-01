@@ -1,0 +1,10 @@
+{
+  "requests_checked": 3,
+  "one_completion_each": true,
+  "metric_matches": 1,
+  "matched_request_id": "382e0b51-361b-46eb-8c6e-503c7c165830",
+  "excluded_statuses": [
+    200,
+    404
+  ]
+}

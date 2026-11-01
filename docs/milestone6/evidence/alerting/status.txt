@@ -1,3 +1,4 @@
-Policy and authorized email channel created and enabled November 1, 2026.
-Definitions captured through the actual Monitoring API; recipient labels redacted.
-Controlled 503, incident, actual notification receipt and screenshots: PENDING.
+Policy and authorized email channel enabled. Actual incident 0.oeimw7fsr668
+opened November 1, 2026 at 22:58:38 UTC following the controlled 503. Authorized
+recipient explicitly confirmed notification receipt in the conversation.
+Incident API response and receipt confirmation captured. Screenshot artifacts pending.

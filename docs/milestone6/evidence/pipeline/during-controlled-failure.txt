@@ -1,0 +1,10 @@
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/backend    2/2     1            2           6d21h
+deployment.apps/frontend   2/2     2            2           6d21h
+
+NAME                            READY   STATUS    RESTARTS   AGE
+pod/backend-574d7d4f46-trxq2    1/1     Running   0          13m
+pod/backend-574d7d4f46-vphvt    1/1     Running   0          12m
+pod/backend-858bcd4b5-7zg57     0/1     Running   0          2m58s
+pod/frontend-7f786d7bbd-jhwwz   1/1     Running   0          12m
+pod/frontend-7f786d7bbd-zwd8r   1/1     Running   0          11m

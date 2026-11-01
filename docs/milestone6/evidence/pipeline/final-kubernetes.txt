@@ -1,0 +1,23 @@
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/backend    2/2     2            2           6d21h
+deployment.apps/frontend   2/2     2            2           6d21h
+
+NAME                            READY   STATUS    RESTARTS   AGE
+pod/backend-574d7d4f46-trxq2    1/1     Running   0          21m
+pod/backend-574d7d4f46-vphvt    1/1     Running   0          20m
+pod/frontend-7f786d7bbd-jhwwz   1/1     Running   0          19m
+pod/frontend-7f786d7bbd-zwd8r   1/1     Running   0          19m
+
+NAME                                           REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/backend    Deployment/backend    cpu: 1%/60%   2         5         2          6d21h
+horizontalpodautoscaler.autoscaling/frontend   Deployment/frontend   cpu: 3%/60%   2         5         2          6d21h
+
+NAME                                  MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
+poddisruptionbudget.policy/backend    1               N/A               1                     6d21h
+poddisruptionbudget.policy/frontend   1               N/A               1                     6d21h
+
+NAME                                CLASS    HOSTS                             ADDRESS          PORTS   AGE
+ingress.networking.k8s.io/scanner   <none>   scanner.136-69-114-222.sslip.io   136.69.114.222   80      6d21h
+
+NAME                                               AGE     STATUS
+managedcertificate.networking.gke.io/scanner-tls   6d21h   Active

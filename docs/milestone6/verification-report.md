@@ -1,42 +1,41 @@
 # Milestone 6 verification - November 1, 2026
 
-| Requirement | Current verified status |
+Live implementation and recovery checks passed. Required screenshot artifacts and
+interactive browser UI confirmation remain pending because browser automation
+stopped at its URL-confidence policy guard. Do not mark the entire submission
+complete until those manual evidence items are supplied.
+
+| Requirement | Actual verification |
 |---|---|
-| Structured JSON | Implemented; local 200/404/503/exception/sanitization tests pass; new image not deployed |
-| Controlled 503 | Separate loopback listener implemented/tested; cloud event pending |
-| HTTP 5xx metric | Created by Terraform; actual 200/404/503 metric tests pending new application |
-| Dashboard | Created; real CPU/memory points verified for both workloads; error demonstration/screenshots pending |
-| Alert/email channel | Created and enabled; incident and received notification pending |
-| Terraform adoption | Six existing resources imported without cloud updates/deletes |
-| Terraform no-change plan | Both remote states: refresh=true, detailed exit 0, No changes |
-| CI identities | WIF and additive IAM applied; no user-managed service-account keys |
-| Namespace CI RBAC | Applied; eight allowed/denied authorization checks passed |
-| CI/CD workflow | Implemented and locally tested; deployment branch, builds and real run pending |
-| Automatic rollback | Implemented; unit tests pass; live failed-rollout/recovery demonstration pending |
-| Existing availability | HTTPS 200; backend/frontend each 2 ready; HPA/PDB intact; certificate Active |
-| SQL | SELECT 1 succeeded in existing backend pod |
-| Application end-to-end | New upload/GCS/Gemini scan not yet rerun |
-| Budgets | Inspection HTTP 403; no budgets changed |
+| Structured logging | Real JSON in Cloud Logging; one completion per test request; local exception/secret-sanitization tests pass |
+| Controlled 503 | Real loopback-only 503, matching UUID; route absent on public backend port; listener stopped afterward |
+| Error metric | Actual DELTA INT64 count 1; exact filter matches only the 503 and excludes tested 200/404 |
+| Dashboard | Created; real HTTP error, backend/frontend CPU and memory data verified by API; screenshots pending |
+| Alert | Incident 0.oeimw7fsr668 opened 22:58:38 UTC; authorized recipient explicitly confirmed receipt; screenshot pending |
+| Terraform | Six imports, ten monitoring/CI additions, separate private versioned state bucket; both refresh-enabled plans exit 0 with No changes |
+| CI authentication | Real WIF authentication succeeded; no user-managed SA keys; eight namespace authorization checks passed |
+| Automatic deployment | Push-triggered run built/pushed both images, deployed digests and passed direct pod/HTTPS checks |
+| Automatic rollback | Deliberate readiness failure timed out; automatic restore step succeeded and verified prior digests/health; workflow remains failed |
+| Application integration | Harmless scan 70: YARA, Gemini success, PostgreSQL persistence/history, exactly one private GCS object |
+| Availability/security | Two healthy frontend/backend replicas, HPA/PDB intact, certificate Active, HTTPS 200 after recovery |
+| Interactive Streamlit UI | HTML/process health verified; browser interaction not reverified after deployment |
+| Billing budgets | Read-only audit returned 403; no budget settings changed |
 
-17 local tests pass; Python compile and whitespace checks pass. Terraform 1.14.9
-with Google provider 7.29.0 validates. Docker engine is unavailable locally;
-image builds are not claimed. Development branch: milestone6-dev; Milestone 5
-base ff5b478 preserved. No deployment-branch push has run.
+Successful deployment: https://github.com/DeekshaGanthi/file-security-scanner/actions/runs/41358659674
 
-User approval covered state storage/imports, monitoring, CI IAM and namespace RBAC.
-The first root apply imported six resources and created eight additions. Dashboard
-filter syntax and new-metric propagation delayed two creations. Corrected filters
-and a verified two-addition retry completed the dashboard and policy. API dashboard
-defaults were matched locally; both refreshed state plans then exited 0.
+Controlled failed deployment with successful recovery: https://github.com/DeekshaGanthi/file-security-scanner/actions/runs/41359525217
 
-Evidence:
+Both runs used approved commit `ef751fe3b3b148b0241ffe7c991eba4b92193051`. The failure used the workflow
+input `demo_failure=true` on the same commit; there is no separate broken source
+commit. The candidate's readiness probe changed, not its database or application
+data. All sampled public HTTPS checks remained 200 during the failed rollout.
 
-- terraform/terraform-no-change.txt and terraform/terraform-bootstrap-no-change.txt
-- terraform/plan-root.txt, plan-bootstrap.txt and plan-remainder.txt (review summaries)
-- dashboard/definition.json and dashboard/resource-data.json
-- alerting/policy.json and alerting/channel-redacted.json
-- pipeline/rbac-verification.json
-- logging/local-tests.txt
+17 tests passed in Actions; Docker images actually built and pushed there. Existing
+Milestone 5 history is preserved. Milestone 6 code is on milestone6-deploy; final
+evidence and repeatable verification scripts are on milestone6-dev. Documentation
+updates are not pushed to the deployment branch, avoiding an unnecessary release.
 
-Repository: https://github.com/DeekshaGanthi/file-security-scanner
-Deployment promotion and controlled demonstrations remain separate review steps.
+Ownership/provider exceptions: terraform-coverage.md. PowerShell commands:
+verification-commands.ps1. Manual screenshot instructions: evidence/manual-screenshots.md.
+No credentials, Terraform state, binary plans or runner pod-template snapshots are
+committed. Historical no-change plans and refreshed final plans are genuine.

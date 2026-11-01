@@ -1,0 +1,10 @@
+release	Validate	2026-11-01T22:56:01.7220322Z 17 passed, 1 warning in 0.39s
+release	Capture verified previous version	2026-11-01T22:58:18.6625722Z VERIFIED backend: 2 replicas, us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-backend@sha256:93cc5c72a910533410e60c54820df104646dd8be42136865a05106f3b0feb6b5
+release	Capture verified previous version	2026-11-01T22:58:18.6626927Z VERIFIED frontend: 2 replicas, us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-frontend@sha256:46d7eb93ff1f779912eaba1dab0c2b097a3048227c43144956509622f96068c7
+release	Capture verified previous version	2026-11-01T22:58:18.6627634Z VERIFIED public HTTPS 200
+release	Deploy and verify intended release	2026-11-01T23:08:19.5608553Z RuntimeError: kubectl rollout failed (exit 1)
+release	Automatically restore and verify previous release	2026-11-01T23:08:33.1982834Z ROLLBACK INITIATED
+release	Automatically restore and verify previous release	2026-11-01T23:08:33.1984196Z VERIFIED backend: 2 replicas, us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-backend@sha256:93cc5c72a910533410e60c54820df104646dd8be42136865a05106f3b0feb6b5
+release	Automatically restore and verify previous release	2026-11-01T23:08:33.1985895Z VERIFIED frontend: 2 replicas, us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-frontend@sha256:46d7eb93ff1f779912eaba1dab0c2b097a3048227c43144956509622f96068c7
+release	Automatically restore and verify previous release	2026-11-01T23:08:33.1986883Z VERIFIED public HTTPS 200
+release	Automatically restore and verify previous release	2026-11-01T23:08:33.1987183Z PREVIOUS VERSION RESTORED AND VERIFIED

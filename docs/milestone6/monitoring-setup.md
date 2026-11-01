@@ -3,8 +3,8 @@
 Status: Terraform resources applied and API-verified November 1, 2026.
 Historical baseline had no metrics/dashboards/policies/channels. Policy and email
 channel are now enabled. Real CPU and memory data verified for both workloads.
-The new application image, controlled 503 metric, incident and email receipt remain
-pending. Resource IDs and evidence are in implementation-summary.md.
+The new application image, real controlled 503, metric count 1 and actual
+incident are verified; the recipient confirmed receipt. Screenshots remain pending. Resource IDs and evidence are in implementation-summary.md.
 The user supplied an authorized email privately; do not put it in committed tfvars.
 
 ## Logs and controlled error
@@ -80,9 +80,9 @@ five-minute aligned windows, threshold >0, duration 0s; actual triggering delay
 still depends on collection/evaluation. Confirm series and incident before claiming
 success. Email channel receipt must be confirmed by the recipient.
 
-Console: select project file-security-scanner → Monitoring → Dashboards →
-AI File Security Scanner — Milestone 6 Observability. Capture all three charts
-with real data. Monitoring → Alerting → AI File Security Scanner — HTTP 5xx Alert:
+Console: select project file-security-scanner â†’ Monitoring â†’ Dashboards â†’
+AI File Security Scanner â€” Milestone 6 Observability. Capture all three charts
+with real data. Monitoring â†’ Alerting â†’ AI File Security Scanner â€” HTTP 5xx Alert:
 capture condition, channel and incident. The user must provide the received email
 screenshot if inbox access is unavailable; redact unrelated private information.
 

@@ -1,18 +1,15 @@
-# Milestone 6 evidence
+# Actual Milestone 6 evidence
 
-Actual observed results only. November 1, 2026:
+- logging/: correlated actual 200/404/503 Cloud Logs, exact metric definition,
+  one-match/excluded-controls verification, observed DELTA count 1 and demo security.
+- dashboard/: real definition and actual backend/frontend CPU/memory data.
+- alerting/: redacted policy/channel, actual incident and user-confirmed email receipt.
+- terraform/: actual refresh-enabled exit-0 no-change plans, exact plan scope reviews,
+  validation and state-bucket security evidence.
+- pipeline/: successful and failed/recovered Actions run metadata/health excerpts,
+  before/candidate/restored digest evidence and final Kubernetes/HTTPS state.
+- application-e2e.json: real harmless scan, YARA, Gemini, SQL/history and private GCS.
 
-- baseline-kubernetes.txt, baseline-https.txt, baseline-database.txt: historical audit.
-- baseline-budgets.json: HTTP 403 inspection status, not budget verification.
-- logging/local-tests.txt: 17 tests passed; new cloud JSON pending deployment.
-- terraform/*-no-change.txt: real refresh-enabled plans, exit 0 for both states.
-- terraform/plan-*.txt: exact approved plan scope summaries; historical review only.
-- dashboard/definition.json: actual API dashboard definition.
-- dashboard/resource-data.json: actual CPU/memory points for both workloads.
-- alerting/policy.json, channel-redacted.json: actual enabled policy/channel.
-- pipeline/rbac-verification.json: eight allowed/denied permission checks.
-
-No dashboard screenshots, received-alert screenshot, real controlled 503 metric,
-successful workflow or failed/recovered workflow evidence exists yet. Do not
-claim completion based on definitions. Recipient must confirm actual email receipt.
-Never commit state, binary plans, tokens, private tfvars or runner template snapshots.
+Required screenshots have NOT been captured. Follow manual-screenshots.md; policy
+guard stopped browser automation. No fabricated screenshots or invented run links.
+Never commit credentials, state, binary plans or runner pod-template snapshots.

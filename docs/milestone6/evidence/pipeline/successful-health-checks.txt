@@ -1,0 +1,8 @@
+release	Validate	2026-11-01T22:45:20.9349035Z 17 passed, 1 warning in 0.37s
+release	Capture verified previous version	2026-11-01T22:47:29.5755307Z VERIFIED backend: 2 replicas, us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-backend@sha256:1b8b8d4df689fb7f5d9f345fd82f5276f49e7c49b9ac290bbbef869b83214730
+release	Capture verified previous version	2026-11-01T22:47:29.5756662Z VERIFIED frontend: 2 replicas, us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-frontend@sha256:d82a4f0e39680cccfd87e82a7b7bb6821ef9cde84924447ecb4b4cd378cfa2f3
+release	Capture verified previous version	2026-11-01T22:47:29.5757601Z VERIFIED public HTTPS 200
+release	Capture verified previous version	2026-11-01T22:47:29.5757895Z Previous healthy pod templates captured; snapshot stays private
+release	Deploy and verify intended release	2026-11-01T22:49:59.6797292Z VERIFIED backend: 2 replicas, us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-backend@sha256:93cc5c72a910533410e60c54820df104646dd8be42136865a05106f3b0feb6b5
+release	Deploy and verify intended release	2026-11-01T22:49:59.6798157Z VERIFIED frontend: 2 replicas, us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-frontend@sha256:46d7eb93ff1f779912eaba1dab0c2b097a3048227c43144956509622f96068c7
+release	Deploy and verify intended release	2026-11-01T22:49:59.6798661Z VERIFIED public HTTPS 200

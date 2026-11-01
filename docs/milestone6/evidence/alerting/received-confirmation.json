@@ -1,0 +1,10 @@
+{
+  "verification": "Authorized recipient explicitly confirmed receipt in this conversation",
+  "notification": "Google Cloud HTTP 5xx Alert",
+  "controlled_request_id": "382e0b51-361b-46eb-8c6e-503c7c165830",
+  "incident": "projects/file-security-scanner/alerts/0.oeimw7fsr668",
+  "controlled_event_utc": "2026-11-01T22:55:05Z",
+  "incident_opened_utc": "2026-11-01T22:58:38Z",
+  "receipt_confirmed_recorded_utc": "2026-11-01T23:01:48.067144+00:00",
+  "screenshot_captured": false
+}

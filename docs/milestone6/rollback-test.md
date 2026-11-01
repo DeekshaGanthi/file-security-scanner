@@ -1,27 +1,25 @@
-# Safe rollback demonstration
+# Verified automatic rollback - November 1, 2026
 
-Status: implementation locally tested; live demonstration pending approval.
+Run: https://github.com/DeekshaGanthi/file-security-scanner/actions/runs/41359525217
 
-After a normal successful deployment from `milestone6-deploy`, manually dispatch
-the same workflow on that branch with `demo_failure=true`. It still builds both
-images. Only the candidate backend readiness probe changes to a nonexistent route.
-Existing rolling strategy (`maxUnavailable=0`, `maxSurge=1`) keeps healthy old
-replicas available. The process liveness probe and database remain unchanged.
+Commit: ef751fe3b3b148b0241ffe7c991eba4b92193051; dispatch input demo_failure=true.
 
-The backend rollout must time out; the workflow automatically restores both saved
-pod templates. It must show `ROLLBACK INITIATED`, prior image digests with verified
-replica counts and direct health results, HTTPS 200, then
-`PREVIOUS VERSION RESTORED AND VERIFIED`. The deployment workflow remains failed.
-The frontend candidate is not deployed if the backend rollout fails first.
+The workflow built/pushed candidate images, verified/captured the healthy release,
+then changed only candidate backend readiness to
+/milestone6-intentional-readiness-failure. Kubernetes returned readiness 404;
+the new pod stayed unready while two healthy old backend replicas continued serving.
+Rolling update maxUnavailable=0/maxSurge=1 preserved availability.
 
-Capture the actual run URL, commit, initial digests, failure, automatic recovery
-logs and restored digests in `evidence/pipeline/`. Check HPA/PDB and certificate
-after recovery. No real demo commit SHA or workflow run exists yet.
+The configured rollout timeout failed the deployment step. Without manual rollback,
+the dedicated automatic recovery step restored both saved pod templates, waited
+for readiness, verified previous immutable image references, checked every running
+pod directly and confirmed HTTPS 200. The failed workflow stayed failed.
 
-PowerShell read-only checks:
+Evidence: pipeline/failed-rollback-run.json, automatic-rollback-health-checks.txt,
+candidate-readiness-failure.json, restored-release.json, final-kubernetes.txt and
+final-https.txt. All prior image digests were matched against the healthy release
+recorded before the demonstration. HPA/PDB and Active certificate remain intact.
+No database reset, persistent-data removal or infrastructure deletion occurred.
 
-```powershell
-kubectl get deployments,pods,hpa,pdb,ingress,managedcertificate -n scanner
-kubectl get deployment backend frontend -n scanner -o 'jsonpath={range .items[*]}{.metadata.name}{" "}{.spec.template.spec.containers[*].image}{"\n"}{end}'
-curl.exe -I https://scanner.136-69-114-222.sslip.io/
-```
+This demonstrates automated recovery from a failed candidate deployment. Forced
+runner cancellation/loss can still prevent workflow recovery; see cicd-workflow.md.

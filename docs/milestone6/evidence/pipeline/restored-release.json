@@ -1,0 +1,67 @@
+{
+  "checked_utc": "2026-11-01T23:09:14.453221+00:00",
+  "all_previous_digests_restored": true,
+  "components": [
+    {
+      "component": "backend",
+      "desired": 2,
+      "ready": 2,
+      "previous_image_restored": true,
+      "pods": [
+        {
+          "pod": "backend-574d7d4f46-trxq2",
+          "ready": true,
+          "immutable_image": "us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-backend@sha256:93cc5c72a910533410e60c54820df104646dd8be42136865a05106f3b0feb6b5",
+          "runtime_image_id": "us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-backend@sha256:93cc5c72a910533410e60c54820df104646dd8be42136865a05106f3b0feb6b5",
+          "health_paths": [
+            "/health/live",
+            "/health/ready"
+          ],
+          "health_passed": true
+        },
+        {
+          "pod": "backend-574d7d4f46-vphvt",
+          "ready": true,
+          "immutable_image": "us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-backend@sha256:93cc5c72a910533410e60c54820df104646dd8be42136865a05106f3b0feb6b5",
+          "runtime_image_id": "us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-backend@sha256:93cc5c72a910533410e60c54820df104646dd8be42136865a05106f3b0feb6b5",
+          "health_paths": [
+            "/health/live",
+            "/health/ready"
+          ],
+          "health_passed": true
+        }
+      ]
+    },
+    {
+      "component": "frontend",
+      "desired": 2,
+      "ready": 2,
+      "previous_image_restored": true,
+      "pods": [
+        {
+          "pod": "frontend-7f786d7bbd-jhwwz",
+          "ready": true,
+          "immutable_image": "us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-frontend@sha256:46d7eb93ff1f779912eaba1dab0c2b097a3048227c43144956509622f96068c7",
+          "runtime_image_id": "us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-frontend@sha256:46d7eb93ff1f779912eaba1dab0c2b097a3048227c43144956509622f96068c7",
+          "health_paths": [
+            "/_stcore/health"
+          ],
+          "health_passed": true
+        },
+        {
+          "pod": "frontend-7f786d7bbd-zwd8r",
+          "ready": true,
+          "immutable_image": "us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-frontend@sha256:46d7eb93ff1f779912eaba1dab0c2b097a3048227c43144956509622f96068c7",
+          "runtime_image_id": "us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-frontend@sha256:46d7eb93ff1f779912eaba1dab0c2b097a3048227c43144956509622f96068c7",
+          "health_paths": [
+            "/_stcore/health"
+          ],
+          "health_passed": true
+        }
+      ]
+    }
+  ],
+  "hpa_pdb_preserved": true,
+  "certificate": "Active",
+  "public_https_status": 200
+}

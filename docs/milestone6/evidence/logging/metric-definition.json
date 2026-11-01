@@ -1,0 +1,16 @@
+{
+  "name": "scanner_http_5xx_count",
+  "description": "One backend request-completion record per actual HTTP 5xx response.",
+  "filter": "resource.type=\"k8s_container\"\nresource.labels.project_id=\"file-security-scanner\"\nresource.labels.location=\"us-central1\"\nresource.labels.cluster_name=\"scanner-gke\"\nresource.labels.namespace_name=\"scanner\"\nresource.labels.container_name=\"backend\"\njsonPayload.service=\"backend\"\njsonPayload.event=\"http_request\"\n\njsonPayload.http_status>=500\njsonPayload.http_status<600",
+  "metricDescriptor": {
+    "name": "projects/file-security-scanner/metricDescriptors/logging.googleapis.com/user/scanner_http_5xx_count",
+    "metricKind": "DELTA",
+    "valueType": "INT64",
+    "unit": "1",
+    "description": "One backend request-completion record per actual HTTP 5xx response.",
+    "type": "logging.googleapis.com/user/scanner_http_5xx_count"
+  },
+  "createTime": "2026-11-01T22:03:49.127881676Z",
+  "updateTime": "2026-11-01T22:03:49.127881676Z",
+  "resourceName": "projects/file-security-scanner/metrics/scanner_http_5xx_count"
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "backend",
+    "replicas": 2,
+    "ready_replicas": 2,
+    "images": {
+      "backend": "us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-backend@sha256:93cc5c72a910533410e60c54820df104646dd8be42136865a05106f3b0feb6b5"
+    },
+    "release_sha": "ef751fe3b3b148b0241ffe7c991eba4b92193051"
+  },
+  {
+    "name": "frontend",
+    "replicas": 2,
+    "ready_replicas": 2,
+    "images": {
+      "frontend": "us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-frontend@sha256:46d7eb93ff1f779912eaba1dab0c2b097a3048227c43144956509622f96068c7"
+    },
+    "release_sha": "ef751fe3b3b148b0241ffe7c991eba4b92193051"
+  }
+]

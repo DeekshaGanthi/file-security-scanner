@@ -1,0 +1,4 @@
+HTTPS URL: https://scanner.136-69-114-222.sslip.io/
+Checked UTC: 2026-11-01T23:09:14.453221+00:00
+Status: 200
+TLS certificate validation: enabled

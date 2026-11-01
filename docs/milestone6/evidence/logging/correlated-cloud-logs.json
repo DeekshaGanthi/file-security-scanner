@@ -1,0 +1,119 @@
+[
+  {
+    "insertId": "x9p61b97kc0ynjat",
+    "jsonPayload": {
+      "http_path": "/health/live",
+      "request_id": "be84456e-6919-40cc-b2b8-1cdb42f11fed",
+      "timestamp": "2026-11-01T22:54:58.036137+00:00",
+      "service": "backend",
+      "message": "HTTP request completed",
+      "http_method": "GET",
+      "duration_ms": 1.008,
+      "event": "http_request",
+      "http_status": 200
+    },
+    "resource": {
+      "type": "k8s_container",
+      "labels": {
+        "project_id": "file-security-scanner",
+        "container_name": "backend",
+        "location": "us-central1",
+        "namespace_name": "scanner",
+        "cluster_name": "scanner-gke",
+        "pod_name": "backend-574d7d4f46-trxq2"
+      }
+    },
+    "timestamp": "2026-11-01T22:54:58.036540578Z",
+    "severity": "INFO",
+    "labels": {
+      "logging.gke.io/top_level_controller_type": "Deployment",
+      "k8s-pod/topology_kubernetes_io/zone": "us-central1-a",
+      "k8s-pod/topology_kubernetes_io/region": "us-central1",
+      "k8s-pod/pod-template-hash": "574d7d4f46",
+      "logging.gke.io/top_level_controller_name": "backend",
+      "k8s-pod/app": "backend",
+      "compute.googleapis.com/resource_name": "gk3-scanner-gke-nap-12vxm2vv-b5bac8a0-4v94"
+    },
+    "logName": "projects/file-security-scanner/logs/stdout",
+    "receiveTimestamp": "2026-11-01T22:54:58.819312602Z"
+  },
+  {
+    "insertId": "wjmomyr8bmledhpx",
+    "jsonPayload": {
+      "message": "HTTP request completed",
+      "timestamp": "2026-11-01T22:54:58.037617+00:00",
+      "request_id": "9ea11d2d-b9ca-4ce2-8fee-4298de3aa838",
+      "service": "backend",
+      "http_method": "GET",
+      "duration_ms": 0.494,
+      "http_path": "<unmatched>",
+      "event": "http_request",
+      "http_status": 404
+    },
+    "resource": {
+      "type": "k8s_container",
+      "labels": {
+        "container_name": "backend",
+        "pod_name": "backend-574d7d4f46-trxq2",
+        "namespace_name": "scanner",
+        "project_id": "file-security-scanner",
+        "cluster_name": "scanner-gke",
+        "location": "us-central1"
+      }
+    },
+    "timestamp": "2026-11-01T22:54:58.037815908Z",
+    "severity": "INFO",
+    "labels": {
+      "k8s-pod/topology_kubernetes_io/zone": "us-central1-a",
+      "logging.gke.io/top_level_controller_type": "Deployment",
+      "k8s-pod/topology_kubernetes_io/region": "us-central1",
+      "k8s-pod/pod-template-hash": "574d7d4f46",
+      "logging.gke.io/top_level_controller_name": "backend",
+      "compute.googleapis.com/resource_name": "gk3-scanner-gke-nap-12vxm2vv-b5bac8a0-4v94",
+      "k8s-pod/app": "backend"
+    },
+    "logName": "projects/file-security-scanner/logs/stdout",
+    "receiveTimestamp": "2026-11-01T22:54:58.819312602Z"
+  },
+  {
+    "insertId": "xfdnsrx4xg49lde6",
+    "jsonPayload": {
+      "service": "backend",
+      "http_path": "/internal/demo/http-503",
+      "timestamp": "2026-11-01T22:54:58.066640+00:00",
+      "error_message": "Request failed",
+      "request_id": "382e0b51-361b-46eb-8c6e-503c7c165830",
+      "http_status": 503,
+      "controlled_failure": true,
+      "duration_ms": 27.68,
+      "http_method": "GET",
+      "event": "http_request",
+      "message": "HTTP request completed",
+      "error_category": "http_error"
+    },
+    "resource": {
+      "type": "k8s_container",
+      "labels": {
+        "cluster_name": "scanner-gke",
+        "container_name": "backend",
+        "project_id": "file-security-scanner",
+        "location": "us-central1",
+        "namespace_name": "scanner",
+        "pod_name": "backend-574d7d4f46-trxq2"
+      }
+    },
+    "timestamp": "2026-11-01T22:54:58.066914726Z",
+    "severity": "ERROR",
+    "labels": {
+      "compute.googleapis.com/resource_name": "gk3-scanner-gke-nap-12vxm2vv-b5bac8a0-4v94",
+      "k8s-pod/app": "backend",
+      "logging.gke.io/top_level_controller_name": "backend",
+      "logging.gke.io/top_level_controller_type": "Deployment",
+      "k8s-pod/topology_kubernetes_io/region": "us-central1",
+      "k8s-pod/topology_kubernetes_io/zone": "us-central1-a",
+      "k8s-pod/pod-template-hash": "574d7d4f46"
+    },
+    "logName": "projects/file-security-scanner/logs/stdout",
+    "receiveTimestamp": "2026-11-01T22:54:58.819312602Z"
+  }
+]

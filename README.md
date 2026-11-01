@@ -3,6 +3,21 @@
 Python FastAPI and Streamlit static file analysis, with risk scoring, YARA,
 optional VirusTotal lookup, Gemini explanation, PostgreSQL history and private GCS uploads.
 
+## Milestone 6 observability and automation
+
+JSON request logs, a restricted controlled-503 demonstration, log-based error metric,
+Monitoring dashboard/received alert, imported Terraform infrastructure, and keyless
+GitHub Actions deployment with verified automatic rollback are implemented.
+Deployment branch: `milestone6-deploy`; development/evidence: `milestone6-dev`.
+The verified release is `ef751fe`; both final refreshed Terraform plans report no changes.
+
+See the [implementation summary](docs/milestone6/implementation-summary.md),
+[actual verification report](docs/milestone6/verification-report.md),
+[PowerShell checks](docs/milestone6/verification-commands.ps1), and
+[remaining screenshot instructions](docs/milestone6/evidence/manual-screenshots.md).
+Live demonstrations passed; required screenshots and interactive browser UI
+confirmation remain pending after browser automation stopped at its policy guard.
+
 ## Milestone 5 GKE deployment
 
 Application: https://scanner.136-69-114-222.sslip.io/

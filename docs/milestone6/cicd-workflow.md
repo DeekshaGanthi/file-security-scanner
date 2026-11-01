@@ -1,7 +1,6 @@
 # CI/CD
 
-Development: `milestone6-dev`. Deployment: `milestone6-deploy` (not yet created or
-pushed). Promote by reviewing and merging the tested development commit into the
+Development: `milestone6-dev`. Deployment: `milestone6-deploy` (approved code deployed). Promote by reviewing and merging the tested development commit into the
 deployment branch; never force-push or rewrite Milestone 5 history.
 
 Workflow: `.github/workflows/milestone6-deploy.yml`. A push to the deployment branch
@@ -11,7 +10,7 @@ The workflow rejects execution on another branch. The WIF condition additionally
 requires the exact repository and deployment ref. The workflow uses the verified public WIF provider resource ID directly. No service-account keys.
 Infrastructure is now applied. Provider:
 projects/956088853573/locations/global/workloadIdentityPools/scanner-github/providers/github.
-Deployment promotion remains pending; no GitHub secret or repository variable is required for WIF.
+Deployment succeeded; no GitHub secret or repository variable is required for WIF.
 
 `scanner-deploy` gets repository-scoped Artifact Registry writer, project cluster
 viewer, and namespace RBAC in `k8s/cicd/rbac.yaml`. The Role can patch only backend
@@ -37,7 +36,7 @@ or job-wide timeout can prevent recovery; operator recovery uses the previous
 verified digest/template from release history. Do not deliberately cancel a demo.
 
 The Actions summary records SHA and digests; Actions logs contain health and
-recovery results. A real successful run and a failed/recovered run remain pending.
+recovery results. Both a real successful run and a failed/recovered run are now recorded in verification-report.md.
 Dependencies follow existing unpinned requirements; full dependency reproducibility
 is a remaining limitation. Action major versions should be pinned to reviewed
 commit SHAs before broader production use.

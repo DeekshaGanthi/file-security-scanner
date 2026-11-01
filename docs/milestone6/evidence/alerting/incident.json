@@ -1,0 +1,22 @@
+{
+  "alerts": [
+    {
+      "name": "projects/file-security-scanner/alerts/0.oeimw7fsr668",
+      "state": "OPEN",
+      "openTime": "2026-11-01T22:58:38Z",
+      "resource": {
+        "type": "k8s_container",
+        "labels": {
+          "project_id": "file-security-scanner"
+        }
+      },
+      "metric": {
+        "type": "logging.googleapis.com/user/scanner_http_5xx_count"
+      },
+      "policy": {
+        "name": "projects/file-security-scanner/alertPolicies/3124806542354479175",
+        "displayName": "AI File Security Scanner \u2014 HTTP 5xx Alert"
+      }
+    }
+  ]
+}

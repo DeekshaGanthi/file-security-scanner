@@ -1,0 +1,70 @@
+{
+  "ready_replicas": 2,
+  "candidate_image": "us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-backend@sha256:ee4236e993f67b01c5a60255d0913ade9eb2ef1e03e7b78e31f776d53b133c48",
+  "candidate_readiness_path": "/milestone6-intentional-readiness-failure",
+  "candidate_pods": [
+    {
+      "name": "backend-858bcd4b5-7zg57",
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": null,
+          "message": "Image us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo/file-scanner-backend@sha256:ee4236e993f67b01c5a60255d0913ade9eb2ef1e03e7b78e31f776d53b133c48 is backed by image streaming by 44.4% (4/9 layers).",
+          "status": "True",
+          "type": "ImageStreaming"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-01T22:58:25Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-01T22:58:23Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-01T22:58:23Z",
+          "message": "containers with unready status: [backend]",
+          "observedGeneration": 1,
+          "reason": "ContainersNotReady",
+          "status": "False",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-01T22:58:23Z",
+          "message": "containers with unready status: [backend]",
+          "observedGeneration": 1,
+          "reason": "ContainersNotReady",
+          "status": "False",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-11-01T22:58:23Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "probe_events": [
+        {
+          "reason": "Unhealthy",
+          "message": "Startup probe failed: Get \"http://10.110.2.14:8000/health/live\": dial tcp 10.110.2.14:8000: connect: connection refused",
+          "count": 10
+        },
+        {
+          "reason": "Unhealthy",
+          "message": "Readiness probe failed: HTTP probe failed with statuscode: 404",
+          "count": 15
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "scan_id": 70,
+  "test_filename": "milestone6-verification-1847d416-4191-4206-aa47-509c70ffa08c.txt",
+  "http_status": 200,
+  "private_sql": true,
+  "history_preserved": true,
+  "gcs_object_count": 1,
+  "yara_completed": true,
+  "gemini_success": true,
+  "gemini_model": "gemini-3.6-flash",
+  "gemini_safe_failure_message": null,
+  "risk": "LOW",
+  "pod": "backend-574d7d4f46-trxq2"
+}

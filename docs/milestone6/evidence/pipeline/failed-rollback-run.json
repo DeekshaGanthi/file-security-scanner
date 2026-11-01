@@ -1,0 +1,198 @@
+{
+  "conclusion": "failure",
+  "databaseId": 41359525217,
+  "event": "workflow_dispatch",
+  "headBranch": "milestone6-deploy",
+  "headSha": "ef751fe3b3b148b0241ffe7c991eba4b92193051",
+  "jobs": [
+    {
+      "completedAt": "2026-11-01T23:08:47Z",
+      "conclusion": "failure",
+      "databaseId": 125006722696,
+      "name": "release",
+      "startedAt": "2026-11-01T22:55:25Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-01T22:55:30Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-01T22:55:26Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T22:55:31Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-11-01T22:55:30Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T22:55:31Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-python@v5",
+          "number": 3,
+          "startedAt": "2026-11-01T22:55:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T22:56:01Z",
+          "conclusion": "success",
+          "name": "Validate",
+          "number": 4,
+          "startedAt": "2026-11-01T22:55:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T22:56:02Z",
+          "conclusion": "success",
+          "name": "Run google-github-actions/auth@v3",
+          "number": 5,
+          "startedAt": "2026-11-01T22:56:01Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T22:56:07Z",
+          "conclusion": "success",
+          "name": "Run google-github-actions/setup-gcloud@v3",
+          "number": 6,
+          "startedAt": "2026-11-01T22:56:02Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T22:56:08Z",
+          "conclusion": "success",
+          "name": "Run google-github-actions/get-gke-credentials@v3",
+          "number": 7,
+          "startedAt": "2026-11-01T22:56:07Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T22:56:22Z",
+          "conclusion": "success",
+          "name": "Run docker/setup-buildx-action@v3",
+          "number": 8,
+          "startedAt": "2026-11-01T22:56:08Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T22:56:22Z",
+          "conclusion": "success",
+          "name": "Run gcloud auth configure-docker us-central1-docker.pkg.dev --quiet",
+          "number": 9,
+          "startedAt": "2026-11-01T22:56:22Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T22:57:29Z",
+          "conclusion": "success",
+          "name": "Build and push backend",
+          "number": 10,
+          "startedAt": "2026-11-01T22:56:22Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T22:58:02Z",
+          "conclusion": "success",
+          "name": "Build and push frontend",
+          "number": 11,
+          "startedAt": "2026-11-01T22:57:29Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T22:58:18Z",
+          "conclusion": "success",
+          "name": "Capture verified previous version",
+          "number": 12,
+          "startedAt": "2026-11-01T22:58:02Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T23:08:19Z",
+          "conclusion": "failure",
+          "name": "Deploy and verify intended release",
+          "number": 13,
+          "startedAt": "2026-11-01T22:58:18Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T23:08:33Z",
+          "conclusion": "success",
+          "name": "Automatically restore and verify previous release",
+          "number": 14,
+          "startedAt": "2026-11-01T23:08:19Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T23:08:33Z",
+          "conclusion": "success",
+          "name": "Record outcome",
+          "number": 15,
+          "startedAt": "2026-11-01T23:08:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T23:08:35Z",
+          "conclusion": "success",
+          "name": "Post Build and push frontend",
+          "number": 25,
+          "startedAt": "2026-11-01T23:08:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T23:08:36Z",
+          "conclusion": "success",
+          "name": "Post Build and push backend",
+          "number": 26,
+          "startedAt": "2026-11-01T23:08:35Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T23:08:42Z",
+          "conclusion": "success",
+          "name": "Post Run docker/setup-buildx-action@v3",
+          "number": 27,
+          "startedAt": "2026-11-01T23:08:36Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T23:08:42Z",
+          "conclusion": "success",
+          "name": "Post Run google-github-actions/auth@v3",
+          "number": 28,
+          "startedAt": "2026-11-01T23:08:42Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T23:08:42Z",
+          "conclusion": "skipped",
+          "name": "Post Run actions/setup-python@v5",
+          "number": 29,
+          "startedAt": "2026-11-01T23:08:42Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T23:08:42Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 30,
+          "startedAt": "2026-11-01T23:08:42Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-01T23:08:42Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 31,
+          "startedAt": "2026-11-01T23:08:42Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/DeekshaGanthi/file-security-scanner/actions/runs/41359525217/job/125006722696"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/DeekshaGanthi/file-security-scanner/actions/runs/41359525217"
+}

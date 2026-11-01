@@ -1,0 +1,26 @@
+{
+  "pod": "backend-574d7d4f46-trxq2",
+  "requests": [
+    {
+      "path": "/health/live",
+      "status": 200,
+      "request_id": "be84456e-6919-40cc-b2b8-1cdb42f11fed"
+    },
+    {
+      "path": "/milestone6-unknown-route",
+      "status": 404,
+      "request_id": "9ea11d2d-b9ca-4ce2-8fee-4298de3aa838"
+    },
+    {
+      "path": "/internal/demo/http-503",
+      "status": 503,
+      "request_id": "382e0b51-361b-46eb-8c6e-503c7c165830",
+      "body": {
+        "status": "controlled_error",
+        "message": "Intentional HTTP 503 for monitoring verification"
+      }
+    }
+  ],
+  "start": "2026-11-01T22:55:02.124374+00:00",
+  "end": "2026-11-01T22:55:06.188708+00:00"
+}
