@@ -1,0 +1,92 @@
+name: Milestone 6 build, deploy and recover
+on:
+  push:
+    branches: [milestone6-deploy]
+  workflow_dispatch:
+    inputs:
+      demo_failure:
+        description: Deliberately fail new backend readiness; automatically restore previous release
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: scanner-production
+  cancel-in-progress: false
+jobs:
+  release:
+    if: github.ref == 'refs/heads/milestone6-deploy'
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      REGISTRY: us-central1-docker.pkg.dev/file-security-scanner/file-security-scanner-repo
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate
+        run: |
+          python -m pip install -r requirements.txt -r requirements-dev.txt
+          python -m compileall -q backend frontend scripts
+          python -m pytest -q
+      - uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: projects/956088853573/locations/global/workloadIdentityPools/scanner-github/providers/github
+          service_account: scanner-deploy@file-security-scanner.iam.gserviceaccount.com
+      - uses: google-github-actions/setup-gcloud@v3
+      - uses: google-github-actions/get-gke-credentials@v3
+        with:
+          cluster_name: scanner-gke
+          location: us-central1
+          project_id: file-security-scanner
+      - uses: docker/setup-buildx-action@v3
+      - run: gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
+      - name: Build and push backend
+        id: backend
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.backend
+          push: true
+          platforms: linux/amd64
+          tags: ${{ env.REGISTRY }}/file-scanner-backend:${{ github.sha }}
+      - name: Build and push frontend
+        id: frontend
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.frontend
+          push: true
+          platforms: linux/amd64
+          tags: ${{ env.REGISTRY }}/file-scanner-frontend:${{ github.sha }}
+      - name: Capture verified previous version
+        run: python scripts/release.py capture
+      - name: Deploy and verify intended release
+        id: deploy
+        env:
+          BACKEND: ${{ env.REGISTRY }}/file-scanner-backend@${{ steps.backend.outputs.digest }}
+          FRONTEND: ${{ env.REGISTRY }}/file-scanner-frontend@${{ steps.frontend.outputs.digest }}
+          RELEASE_SHA: ${{ github.sha }}
+          DEMO_FAILURE: ${{ inputs.demo_failure == true && 'true' || 'false' }}
+        run: |
+          args=()
+          if [[ "$DEMO_FAILURE" == true ]]; then args+=(--demo-failure); fi
+          python scripts/release.py deploy --backend-image "$BACKEND" --frontend-image "$FRONTEND" --sha "$RELEASE_SHA" "${args[@]}"
+          python scripts/release.py verify --backend-image "$BACKEND" --frontend-image "$FRONTEND"
+      - name: Automatically restore and verify previous release
+        if: ${{ always() && steps.deploy.outcome == 'failure' }}
+        run: python scripts/release.py rollback
+      - name: Record outcome
+        if: always()
+        env:
+          SHA: ${{ github.sha }}
+          BACKEND_DIGEST: ${{ steps.backend.outputs.digest }}
+          FRONTEND_DIGEST: ${{ steps.frontend.outputs.digest }}
+          DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
+        run: |
+          printf 'Commit: %s\nBackend: %s\nFrontend: %s\nDeployment: %s\n' "$SHA" "$BACKEND_DIGEST" "$FRONTEND_DIGEST" "$DEPLOY_OUTCOME" >> "$GITHUB_STEP_SUMMARY"
+          echo 'A failed deployment remains a failed workflow even after recovery.' >> "$GITHUB_STEP_SUMMARY"
