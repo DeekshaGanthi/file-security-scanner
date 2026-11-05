@@ -17,3 +17,14 @@ backend.zip
 crash.log
 gha-creds-*.json
 milestone6-tmp/
+# Terraform local files and state
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+crash.*.log
+
+# Terraform variable files may contain secrets
+*.tfvars
+*.tfvars.json
